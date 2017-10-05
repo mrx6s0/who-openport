@@ -2,8 +2,8 @@
 
 
 # Clássico backdoor, escrito na linguagem C.
- Em desenvolvimento. Por tal motivo as funções estão separadas, estou projetando.
- Levando em conta que comecei há alguns dias o código principal. 
+ 
+# Em desenvolvimento.
 
 Desenvolpment of a backdoor write in C. 
 
