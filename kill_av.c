@@ -1,4 +1,4 @@
-int kill_antivirus(void)
+void kill_antivirus(void)
 
   {
     int FILE;
