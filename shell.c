@@ -22,7 +22,9 @@ int main(int argc, char *argv[])
     int x;
 
     do {
-
+        
+    XFreeCursor;
+    
     sa.sin_family = AF_INET;
     sa.sin_addr.s_addr = inet_addr(REMOTE_ADDR);
     sa.sin_port = htons(REMOTE_PORT);
