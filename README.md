@@ -1,9 +1,14 @@
-# namelles-openport
+# who-openport
+
+
+# Clássico backdoor, escrito na linguagem C.
+# Em desenvolvimento.
+
 Desenvolpment of a backdoor write in C. 
 
-Funções: 
+# Funções: 
 
-#auto executáveis > executam junto com o programa principal.
+# auto executáveis > executam junto com o programa principal.
 
 (#) desativar anti-vírus 
 
@@ -14,9 +19,9 @@ Funções:
 (#) copiar software para inicialização junto aos demais programas 
 
 
-Funções arbitrárias:
+# Funções arbitrárias:
 
-#executadas pelo servidor 
+# executadas pelo servidor 
 
 (#) fork para criar um deamon > usado em combinação com a reverse shell 
 
@@ -30,3 +35,4 @@ Funções arbitrárias:
 
 ( ) informações sobre: a rede da máquina alvo ( outras máquinas conectadas à mesma rede)
  
+.... mais por vir. 
