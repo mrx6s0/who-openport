@@ -19,12 +19,11 @@ Desenvolpment of a backdoor write in C.
 
 (#) copiar software para inicialização junto aos demais programas 
 
+(#) fork para criar um deamon > usado em combinação com a reverse shell 
 
 # Funções arbitrárias:
 
 # executadas pelo servidor 
-
-(#) fork para criar um deamon > usado em combinação com a reverse shell 
 
 (#) enviar arquivo para a máquina alvo
 
