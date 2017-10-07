@@ -4,7 +4,7 @@ void kill_firewall(void)
 
   {
 
-   execev("firewall.vbs");
+   execev("firewall.vbs",0,0);
 
    return 0;
 
