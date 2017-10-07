@@ -5,6 +5,13 @@
  
 # Em desenvolvimento.
 
+"Quem abriu a porta?" 
+
+Esse código tem por finalidade incluir um método de acesso a sistemas, remotamente, instalando o programa apenas uma vez na 
+máquina. 
+
+Garantido o acesso, o servidor poderá executar funções arbitrárias na máquina, e alterar o sistema. 
+
 Desenvolpment of a backdoor write in C. 
 
 # Funções: 
