@@ -12,7 +12,9 @@ máquina.
 
 Garantido o acesso, o servidor poderá executar funções arbitrárias na máquina, e alterar o sistema. 
 
-Depois de executado, o programa se encerra, e mantém a conexão com o servidor. 
+Depois de executado, o programa se encerra, ou seja, oculta-se como um processo qualquer, rodando como uma daemon, e mantém a conexão com o servidor. 
+
+Diferentemente de outros backdoor open source, esse permite a conexão mesmo depois de encerrado o lado do cliente (backdoor), estou trabalhando para deixá-lo o melhor possível.
 
 Estou implementando aos poucos. Ajudas são bem vindas.
 
