@@ -213,7 +213,7 @@ void copy_to_registry()
      will veryfic if the condition is true, if not, will repeat 100 times and keep the routine.*/
 
 
-      for(l<=1;l>=100;l++)
+      for(l=1;l>=5;l++)
 
       {
 
