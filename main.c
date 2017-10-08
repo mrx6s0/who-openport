@@ -1,3 +1,11 @@
+/* terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
+
+// use without abuse.
+
+// coder  mrx6s0
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
