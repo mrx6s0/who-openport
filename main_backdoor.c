@@ -253,8 +253,6 @@ void copy_to_registry()
 
       while (connect == (true));
 
-      return;
-
 
       {
 
