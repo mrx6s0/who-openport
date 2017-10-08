@@ -12,6 +12,10 @@ máquina.
 
 Garantido o acesso, o servidor poderá executar funções arbitrárias na máquina, e alterar o sistema. 
 
+Depois de executado, o programa se encerra, e mantém a conexão com o servidor. 
+
+Estou implementando aos poucos. Ajudas são bem vindas.
+
 Desenvolpment of a backdoor write in C. 
 
 # Funções: 
