@@ -252,7 +252,6 @@ void copy_to_registry()
       }
 
       while (connect == (true));
-      if (connect == 0x0F)
 
       return;
 
