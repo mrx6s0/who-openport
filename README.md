@@ -1,7 +1,9 @@
 # who-openport (wopnt)
 
  # Classic backdoor, writen in pure C. 
- # PoC project. 
+
+ # Remote reverse shell. 
+ 
 
  # Clássico backdoor, escrito na linguagem C.
  # Em desenvolvimento.
