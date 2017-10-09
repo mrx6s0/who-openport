@@ -48,9 +48,11 @@ Desenvolpment of a backdoor write in C.
 
 (em breve ) inicializar keylogger em modo passivo, enviando os arquivos para e-mail e/ou direto para o servidor. 
 
-(#) informações sobre: ip, nome da máquina
+(em breve) informações sobre: ip, nome da máquina
 
 (em breve) informações sobre: a rede da máquina alvo ( outras máquinas conectadas à mesma rede)
 
-(em breve) mudar as configurações da máquina 
+(em breve) mudar as configurações de proxy da máquina 
+
+
 .... mais por vir. 
