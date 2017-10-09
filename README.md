@@ -1,5 +1,9 @@
-# who-openport
+# who-openport 
 
+# Classic backdoor, writen in pure C. 
+
+
+# PoC project. 
 
 # Clássico backdoor, escrito na linguagem C.
  
@@ -38,14 +42,15 @@ Desenvolpment of a backdoor write in C.
 
 # executadas pelo servidor 
 
-(#) enviar arquivo para a máquina alvo
+(em breve) enviar arquivo para a máquina alvo
 
-(#) fazer download de arquivos da máquina
+(em breve) fazer download de arquivos da máquina
 
-( ) inicializar keylogger em modo passivo, enviando os arquivos para e-mail e/ou direto para o servidor. 
+(em breve ) inicializar keylogger em modo passivo, enviando os arquivos para e-mail e/ou direto para o servidor. 
 
 (#) informações sobre: ip, nome da máquina
 
-( ) informações sobre: a rede da máquina alvo ( outras máquinas conectadas à mesma rede)
- 
+(em breve) informações sobre: a rede da máquina alvo ( outras máquinas conectadas à mesma rede)
+
+(em breve) mudar as configurações da máquina 
 .... mais por vir. 
