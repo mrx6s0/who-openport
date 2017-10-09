@@ -1,13 +1,10 @@
-# who-openport 
+# who-openport (wopnt)
 
-# Classic backdoor, writen in pure C. 
+ # Classic backdoor, writen in pure C. 
+ # PoC project. 
 
-
-# PoC project. 
-
-# Clássico backdoor, escrito na linguagem C.
- 
-# Em desenvolvimento.
+ # Clássico backdoor, escrito na linguagem C.
+ # Em desenvolvimento.
 
 "Quem abriu a porta?" 
 
@@ -18,7 +15,9 @@ Garantido o acesso, o servidor poderá executar funções arbitrárias na máqui
 
 Depois de executado, o programa se encerra, ou seja, oculta-se como um processo qualquer, rodando como uma daemon, e mantém a conexão com o servidor. 
 
-Diferentemente de outros backdoor open source, esse permite a conexão mesmo depois de encerrado o lado do cliente (backdoor), estou trabalhando para deixá-lo o melhor possível.
+Para tal a implementação da shell deve estar conectada a algum sevidor. Não apenas uma shell, mas sim. uma REMOTE reverse-shell.
+
+Diferentemente de outros backdoor open source, esse (permite) existe a conexão mesmo depois de encerrado o lado do cliente (backdoor), estou trabalhando para deixá-lo o melhor possível.
 
 Estou implementando aos poucos. Ajudas são bem vindas.
 
