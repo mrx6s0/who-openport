@@ -1,4 +1,6 @@
-/* server protype */
+/* server protype
+
+   trivial thing... just the basic sctructure. */
 
 #include <stdio.h>
 #include <string.h>    //strlen
@@ -9,14 +11,14 @@
 #define true 1
 #define false 0
 
-#define port 55766
+#define port 55765
 
-int main(int argc , char **argv[])
+int main(int argc, char **argv[])
 
 {
-    int socket_desc , client_sock , c , read_size;
+    int socket_desc, client_sock, c, read_size;
 
-    struct sockaddr_in server , client;
+    struct sockaddr_in server, client;
 
     char client_message[2000];
 
@@ -24,16 +26,20 @@ int main(int argc , char **argv[])
 
     socket_desc = socket(AF_INET , SOCK_STREAM , 0);
     if (socket_desc == -1)
+
     {
         perror("Could not create socket");
+
     }
-    puts("\nSocket created [*]\n");
+
+    puts("Socket created...\n");
 
     //Prepare the sockaddr_in structure
 
+    memset(server.sin_zero, '\0', sizeof server.sin_zero); /*aloca espaço de memória para o PIPE socket. */
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons( 55766 ); /* port allready defined */
+    server.sin_port = htons(port); /* port allready defined */
 
     //Bind
 
@@ -43,9 +49,10 @@ int main(int argc , char **argv[])
 
         perror("bind failed. Error binding");
         return -1;
+
     }
 
-    puts("\nbind done [*]\n");
+     puts("\nbind done...\n");
 
     //Listen
 
@@ -53,22 +60,22 @@ int main(int argc , char **argv[])
 
     //Accept and incoming connection
 
-    puts("\n[**] Waiting for incoming connections...\n");
+    puts("\n** Waiting backdoor connect in\n");
     c = sizeof(struct sockaddr_in);
 
-    //accept connection from an incoming client
+    //accept connection from an incoming client (backdoor)
 
     client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c);
 
-    if (client_sock <= -1)
+    if (client_sock  == false)
 
     {
         perror("accept failed");
-        return 0x01;
+        return false;
 
     }
 
-    connect == 1;
+//  if (connect == true)
     puts("Connection accepted");
 
     }
