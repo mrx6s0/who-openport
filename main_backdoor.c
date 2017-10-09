@@ -224,14 +224,10 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      {
 
-      //guarante that this functions will run after the shell
-
-      //  will veryfic if the condition is true, if not, will repeat 5 times and keep the routine.//
-
-      // for(l<=0;l>=5;l++)
-
-      {
-
+     {
+     
+      /* this is generic */ 
+	     
       if(auto_copy == -1)
       perror("error in auto_copy");
       else
@@ -252,7 +248,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
       }
 
-    /*shell run while the connection for true */
+      /*shell run while the connection for true */
 
       do {
 
