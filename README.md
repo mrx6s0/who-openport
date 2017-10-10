@@ -1,9 +1,17 @@
-# who-openport (wopnt)
+# who-openport (wopnt)  
+
+@Copyrights
+ mrx6s0 - 2017 - github.com/mrx6s0
+//
 
  # Classic backdoor, writen in pure C. 
-
- # Remote reverse shell. 
+ # In desenvolpment. 
  
+ # Join to this project,
+ # contact me!
+ 
+ @malw
+are things:
 
  # Clássico backdoor, escrito na linguagem C.
  # Em desenvolvimento.
@@ -27,8 +35,6 @@ Desenvolpment of a backdoor write in C.
 
 # Funções: 
 
-# auto executáveis > executam junto com o programa principal.
-
 (#) desativar anti-vírus 
 
 (#) desativar firewall 
@@ -39,9 +45,6 @@ Desenvolpment of a backdoor write in C.
 
 (#) fork para criar um deamon > usado em combinação com a reverse shell 
 
-# Funções arbitrárias:
-
-# executadas pelo servidor 
 
 (em breve) enviar arquivo para a máquina alvo
 
@@ -57,3 +60,5 @@ Desenvolpment of a backdoor write in C.
 
 
 .... mais por vir. 
+
+     more to come. 
