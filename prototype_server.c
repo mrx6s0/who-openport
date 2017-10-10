@@ -66,7 +66,7 @@ int main(int argc, char **argv[])
 
     //accept connection from an incoming client (backdoor)
 
-    target_sock = accept(socket_desc, (struct sockaddr *)&target, (socklen_t*)&c);
+    target_sock = accept(target, (struct sockaddr *)&target, (socklen_t*)&c);
 
     if (target_sock  == false)
 
@@ -74,8 +74,10 @@ int main(int argc, char **argv[])
         perror("accept failed");
         return false;
 
-    }
+    } 
 
     puts("Connection accepted");
 
     }
+
+    /* must to be handle the connection from here */
