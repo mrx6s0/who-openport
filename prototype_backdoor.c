@@ -23,13 +23,15 @@
 
     int x;
     struct sockaddr_in s;
-
-    s.sin_family = AF_INET;
-    s.sin_addr.s_addr = inet_addr(remote_addr);
-    s.sin_port = htons(remote_port);
-    memset(s.sin_zero, '\0', sizeof s.sin_zero);
+    
+    memset(s.sin_zero, '\0', sizeof s.sin_zero); /* armazena espaço na memória */ 
+    s.sin_family = AF_INET; /* família de protocolos */ 
+    s.sin_addr.s_addr = inet_addr(remote_addr); /* macro definition */ 
+    s.sin_port = htons(remote_port); /* .. too */ 
 
     x = socket(AF_INET, SOCK_STREAM, 0);
+    
+    /* conditions here */ 
 
     connect(x, (struct sockaddr *)&s, sizeof(s));
     if(connect == false)
@@ -49,7 +51,7 @@
 
     {
 
-    return true;
+    return;
 
     }
  
