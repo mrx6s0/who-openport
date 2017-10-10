@@ -1,4 +1,4 @@
-/* server protype
+/* server prototype
 
    trivial thing... just the basic sctructure. */
 
@@ -60,7 +60,7 @@ int main(int argc, char **argv[])
 
     //Accept and incoming connection
 
-    puts("\n** Waiting backdoor connect in\n");
+    puts("\n** Waiting backdoor connect in **\n");
     c = sizeof(struct sockaddr_in);
 
     //accept connection from an incoming client (backdoor)
