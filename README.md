@@ -2,9 +2,6 @@
 
 @Copyrights
  mrx6s0 - 2017 - github.com/mrx6s0
- 
- 
-// contact me in: https://www.vivaolinux.com.br/~mrx6s0
 
  # Classic backdoor, writen in pure C. 
  # In desenvolpment. 
