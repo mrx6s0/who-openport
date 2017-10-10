@@ -201,8 +201,12 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      /*enter in a shell, finally */
 		
-    /* fck, anyway, here are where the conditions come. */ 		
+    /* anyway, here are where the conditions come... */ 		
 
+   /* fck, now  i have power!
+
+      made conditions here. */		
+     
      send(x,"\nsocket created\n",18,0), send(x,"\nConnected in machine\n",22,0);
      if(connect == -1)
      perror("BREAK CONNECTION,(failure)");
@@ -272,4 +276,5 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     }
 
 
-}
+
+ }
