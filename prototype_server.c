@@ -74,10 +74,8 @@ int main(int argc, char **argv[])
         perror("accept failed");
         return false;
 
-    } 
+    } /* must to be handle the connection from here */
 
     puts("Connection accepted");
 
     }
-
-    /* must to be handle the connection from here */
