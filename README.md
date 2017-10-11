@@ -60,5 +60,13 @@ Desenvolpment of a backdoor write in C.
 
 
 .... mais por vir. 
+I THINK KINDA DESNECESSARY, BUT HERE I GO:
+to test this, set up netcat 
 
-     more to come. 
+# nc -lvp 2222 
+
+execute the backdoor, and voilá, u have the connection. 
+
+That's fine. I'm making my own netcat to handle with th backdoor wopnt;
+
+     more to come! 
