@@ -17,7 +17,7 @@ void execute()
     int sockfd;
     char buf[1024];
     
-    while(1);
+    while(true);
 
         data = recv(sockfd, buf, sizeof buf, 0);
         if(data == false)
@@ -41,8 +41,11 @@ void execute()
     
     {
     
-       execute();
-        return 0;
+        execute();
+       
+        return;
                 
     }
-    }
+
+
+}
