@@ -2,7 +2,7 @@
 
  while(true), the char data will check if there's some data been transfered, 
  if don't, return to routine. 
- then will expect for commands of server side. */ 
+ then will accept commands of server side. */ 
 
 void execute()
 {
