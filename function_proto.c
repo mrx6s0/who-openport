@@ -4,13 +4,6 @@
  if don't, return to routine. 
  then will expect for commands of server side. */ 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/socket.h>
-
-#define false 0 
-#define true 1 
-
 void execute()
 {
     char data;   
