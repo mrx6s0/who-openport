@@ -47,17 +47,17 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
   } Target;
 
-  x = 1;
-
+  x = true;
 
   void error (char *err)
 
   {
 
   perror(err);
-  exit(EXIT_FAILURE);
-
-  } /* exit without exceptions... and keep the routine.
+  exit(EXIT_SUCCESS);  
+  return;
+	  
+  } /* return without exceptions... and keep the routine.
 
 
   //function  to disable antivirus. */
