@@ -1,5 +1,5 @@
-### nasm -f backdoor.asm
-### gcc -o backdoor -m elf_i386 
+;nasm -f backdoor.asm
+;gcc -o backdoor -m elf_i386 
 
 dup2@plt-0x10:
  pushq  0x200742(%rip)        # 600e28 <_GLOBAL_OFFSET_TABLE_+0x8>
