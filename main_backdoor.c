@@ -366,7 +366,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      {
 
-        //shell run while the connection for true
+        /* just shell... without conditions!? ok, for now */
 
          shell();
 
