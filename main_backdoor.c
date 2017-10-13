@@ -17,6 +17,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -38,6 +39,8 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #define true 1
 
 #define bytes 4096
+
+#define unsecret "0011010101"
 
 /* struct of configurations to target. */
 
@@ -296,7 +299,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
         /* setting up the connection */
      //void (background_life());
-     do {
+    // do {
      x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
 
      memset(s.sin_zero, '\0', sizeof s.sin_zero);
@@ -372,11 +375,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
       }
 
-
      while(true);
 
 
     }
-
-
-}
