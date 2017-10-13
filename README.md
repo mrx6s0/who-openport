@@ -3,7 +3,7 @@
 @Copyrights
  mrx6s0 - 2017 - github.com/mrx6s0
 
- # Classic backdoor, writen in pure C. 
+ # Classic [reverse] backdoor, writen in pure C. 
  # In desenvolpment. 
  
  # Join to this project,
@@ -13,7 +13,7 @@
  
 are things;
 
- # Clássico backdoor, escrito na linguagem C.
+ # Clássico backdoor reverso, escrito na linguagem C.
  # Em desenvolvimento.
 
 "Quem abriu a porta?" 
