@@ -27,7 +27,7 @@ Depois de executado, o programa se encerra, ou seja, oculta-se como um processo 
 
 Para tal a implementação da shell deve estar conectada a algum sevidor. Não apenas uma shell, mas sim. uma REMOTE reverse-shell.
 
-Diferentemente de outros backdoor open source, esse (permite) existe a conexão mesmo depois de encerrado o lado do cliente (backdoor), estou trabalhando para deixá-lo o melhor possível.
+Diferentemente de outros backdoor open source, esse (permite) existe a conexão mesmo depois de encerrado o lado do cliente (backdoor).
 
 Estou implementando aos poucos. Ajudas são bem vindas.
 
@@ -56,17 +56,6 @@ Desenvolpment of a backdoor write in C.
 
 (em breve) informações sobre: a rede da máquina alvo ( outras máquinas conectadas à mesma rede)
 
-(em breve) mudar as configurações de proxy da máquina 
-
-
-.... mais por vir. 
-I THINK KINDA DESNECESSARY, BUT HERE I GO:
-to test this, set up netcat 
-
-# nc -lvp 2222 
-
-execute the backdoor, and voilá, u have the connection. 
-
-That's fine. I'm making my own netcat to handle with th backdoor wopnt;
+(em breve) mudar as configurações de proxy da máquina  
 
      more to come! 
