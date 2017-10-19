@@ -2,8 +2,6 @@
 
 /* usar system() para invocar as funções do sistema! */
 
-/* usar system() para invocar as funções do sistema! */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
