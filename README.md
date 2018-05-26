@@ -58,4 +58,13 @@ Desenvolpment of a backdoor write in C.
 
 (em breve) mudar as configurações de proxy da máquina  
 
+Para ver em ação, use o netcat. 
+
+# nc -lvp 3389 
+
+O backdoor se encerrará no mesmo momento, portanto, o servidor tem que estar na escuta na porta definida. 
+Então, a conexão é garantida. 
+
+Tudo depende de vossa criatividade, desse ponto em diante. 
+
      more to come! 
