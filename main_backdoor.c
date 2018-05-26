@@ -29,7 +29,7 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
 #include <sys/socket.h>
 #include <X11/Xlib.h>
 
-#define remote_addr "127.0.0.1"
+#define remote_addr "0.0.0.0" /* your dark server here */ 
 #define remote_port 3389
 
 #define false 0
