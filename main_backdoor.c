@@ -40,7 +40,7 @@ terraquian date: 4/5/20178 - 0415:55 -PM *** in desenvolpment.
 
   typedef struct {
 
-  char REMOTE_ADDR; /*remote_addr */
+  int REMOTE_ADDR; /*remote_addr */
   int REMOTE_PORT; /* remote port */
   int x;
 
