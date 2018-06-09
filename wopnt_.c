@@ -2,8 +2,6 @@
 /*
 // Version 1.0.0 
 //
-// Contribuition by: https://github.com/Sphinxs
-//
 // Compile : cc backdoor.c -lm -w
 //
 // List processes : ps aux
